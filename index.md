@@ -108,7 +108,7 @@ Thus you ask:
 
 ---
 
-## About the package 
+## The package (About)
 
 * Ecological Metadata Language (XML)
   * Allows to capture aspects of data:
@@ -129,7 +129,7 @@ Thus you ask:
 
 ---
 
-## About the package
+## The package (About)
 
 * Part of the rOpenSci community
   * Data-Acess, Vizualisation, Reproducibility... 30+)
@@ -145,7 +145,7 @@ Thus you ask:
 
 --- bg:#EEE
 
-## Install the package
+## The package (Install)
 
 * Not yet available via CRAN
 * Source code via GitHub
@@ -169,7 +169,7 @@ library("EML")
 
 ---
 
-## Typical metadata fields
+## Typical metadata (add core)
 
 ```
 - eml
@@ -190,9 +190,9 @@ library("EML")
   - additionalMetadata
 ```
 
----
+---  
 
-## Typical metadata fields
+## Typical metadata (add more "x")
 
 ```
 - eml
@@ -281,7 +281,12 @@ described_dataset = data.set(undescribed_data,
 
 --- bg:#EEE
 
-* Source the raw dataset
+## Your turn (core metadata)
+
+```
+read.csv("http://cpfaff.github.io/emlforrcourse/assets/files/csv_file_from_email.csv")
+```
+
 * Create the colum definitions
   - Write them into an own variable first!
   - Hint: A vector with plain text definitions
@@ -292,11 +297,6 @@ described_dataset = data.set(undescribed_data,
   - Use: unit = "number" (for the count)
   - Use: format = "YYYY-MM-DD" (for thed date)
   - Ensure that the date column is a date! (as.Date(...))
-  
-```
-undescribed_data$dates = as.Date(undescribed_data$dates)
-class(undescribed_data$dates)
-```
 
 ---
 

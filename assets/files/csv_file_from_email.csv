@@ -1,4 +1,4 @@
-"","river","spp","stg","ct","dates"
-"1","SAC","king","smolt",293,"10.10.1991"
-"2","SAC","king","parr",410,"11.10.1992"
-"3","AM","ccho","smolt",210,"10.10.1993"
+"river","spp","stg","ct","dates"
+"SAC","king","smolt",293,"1991-10-10"
+"SAC","king","parr",410,"1992-10-11"
+"AM","ccho","smolt",210,"1993-10-10"
