@@ -50,15 +50,20 @@
     <h2>Why metadata matters?</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
-<li>Imagine you are interested in salmon species
+    <p>   </p>
 
 <ul>
-<li>Their distribution across N.A. (~ past 30 years)</li>
-<li>But you only find publications (no datasets)</li>
-<li>You start asking the authors and your network</li>
+<li>You are interested in salmon species
+
+<ul>
+<li>Distribution across N.A.</li>
+<li>~ past 30 years</li>
+<li>Only find publications (no datasets)</li>
+<li>You ask the authors and your network</li>
 </ul></li>
 </ul>
+
+<p>   </p>
 
 <blockquote>
 <p>He Claas</p>
@@ -72,10 +77,6 @@ is useful to you!<br>
 
 <p><a href="assets/files/csv_file_from_email.csv" class="btn"><i class="icon-envelope"></i> Attachment.csv</a></p>
 
-<ul>
-<li>Download and open the dataset now!</li>
-</ul>
-
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -85,7 +86,9 @@ is useful to you!<br>
     <h2>Why metadata matters?</h2>
   </hgroup>
   <article data-timings="">
-    <table><thead>
+    <p>   </p>
+
+<table><thead>
 <tr>
 <th align="left">river</th>
 <th align="left">spp</th>
@@ -117,21 +120,21 @@ is useful to you!<br>
 </tr>
 </tbody></table>
 
-<p></br></p>
+<p>   </p>
 
 <ul>
-<li><p>Some you might guess!</p>
+<li><p>These you guess:</p>
 
 <ul>
-<li>river: Abbr. of collection sites</li>
-<li>spp: May be species names</li>
-<li>stg: Seems to be the life stage</li>
+<li>river: Abbr. of collection sites (full name)</li>
+<li>spp: Abbr. of species names (full name)</li>
+<li>stg: The life stage of fish</li>
 </ul></li>
-<li><p>But what about the rest?</p>
+<li><p>But what about the rest/details?</p>
 
 <ul>
-<li>ct: Is numeric (direct or statistic?)</li>
-<li>dates: Which date format?</li>
+<li>ct: Is numeric (Neasured, statistic, Method)</li>
+<li>dates: Which date format? (YMD, YDM)</li>
 </ul></li>
 </ul>
 
@@ -144,9 +147,7 @@ is useful to you!<br>
     <h2>Why metadata matters?</h2>
   </hgroup>
   <article data-timings="">
-    <p></br></p>
-
-<p>Thus you ask:</p>
+    <p></br> </p>
 
 <blockquote>
 <p>He Claas</p>
@@ -177,24 +178,31 @@ dates: The date format is YMD</p>
   </hgroup>
   <article data-timings="">
     <ul>
-<li><p>Without metadata</p>
+<li>We learn: 
 
 <ul>
-<li>Valuable data becomes unusable</li>
-<li>Even if preserved!</li>
+<li>Without metadata</li>
+<li>Data gets unusalbe and is lost</li>
 </ul></li>
-<li><p>With good metadata</p>
+</ul>
+
+<p>   </p>
 
 <ul>
-<li>Supports the reuse (larger context)</li>
-<li>Helps preserve and exchange</li>
-</ul></li>
-<li><p>We have good tools and standards</p>
+<li>Metadata standards (DwC, EML)</li>
+</ul>
+
+<p>   </p>
 
 <ul>
-<li>Morpho (DataOne), Data-Up (California Libraries), BEF-Data (BEF-China)</li>
-<li>ABCD (Access to Biological Collection Data)</li>
-<li>Ecological Metadata Language (customizable)</li>
+<li>Ecological Metadata Language (EML, XML)
+
+<ul>
+<li>Allows to capture aspects of data:</li>
+<li>Units and categories</li>
+<li>Temporal and spatial coverage ...</li>
+<li>Contact information ... and much more</li>
+<li>In a structured machine readable way</li>
 </ul></li>
 </ul>
 
@@ -214,23 +222,23 @@ dates: The date format is YMD</p>
     <h2>The package (About)</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
-<li><p>Ecological Metadata Language (XML)</p>
+    <p></br></p>
 
 <ul>
-<li>Allows to capture aspects of data:</li>
-<li>Units and categories</li>
-<li>Temporal and spatial coverage ...</li>
-<li>Contact information ... and much more</li>
-<li>In a structured machine readable way</li>
-<li>Better data exchange, use and preservation</li>
+<li><p>Metadata tools</p>
+
+<ul>
+<li>Morpho (companion online)</li>
+<li>Metacat (companion online), Data-Up (Californian Libraries), BEF-Data (BEF-China)</li>
+<li>EML for R (initial commit 24 Jun 2013)</li>
 </ul></li>
 <li><p>Motivation (R package for EML)</p>
 
 <ul>
 <li>Many data undescribed; Biologists in R</li>
 <li>Introduces a wide spread standard to R</li>
-<li>Read + Write metadata, Publish (Data + Metadata)</li>
+<li>Read + Write metadata</li>
+<li>Publish (Data + Metadata)</li>
 </ul></li>
 </ul>
 
@@ -302,6 +310,33 @@ library(&quot;EML&quot;)
 
 <slide class="" id="slide-8" style="background:;">
   <hgroup>
+    <h2>Typical metadata</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>- eml
+  - dataset
+    - creator
+    - contact
+    - publisher
+    - title
+    - pubDate
+    - keywords
+    - abstract
+    - intellectualRights
+    - methods
+    - coverage
+    - dataTable
+      - physical
+      - attributeList
+  - additionalMetadata
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
     <h2>Typical metadata (add core)</h2>
   </hgroup>
   <article data-timings="">
@@ -317,34 +352,7 @@ library(&quot;EML&quot;)
     - intellectualRights
     - methods
     - coverage
-    - dataTable (description, categories, units)
-      - physical
-      - attributeList
-  - additionalMetadata
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-9" style="background:;">
-  <hgroup>
-    <h2>Typical metadata (add more &quot;x&quot;)</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code>- eml
-  - dataset
-    - creator (x)
-    - contact (x)
-    - publisher
-    - title
-    - pubDate
-    - keywords
-    - abstract (x)
-    - intellectualRights (x)
-    - methods
-    - coverage
-    - dataTable (description, categories, units)
+    - dataTable (descriptions, categories, units)
       - physical
       - attributeList
   - additionalMetadata
@@ -359,7 +367,7 @@ library(&quot;EML&quot;)
     <h2>Create metadata</h2>
   </hgroup>
   <article data-timings="">
-    <p></br></p>
+    <p>  </p>
 
 <ul>
 <li>River site used for collection
@@ -388,6 +396,8 @@ library(&quot;EML&quot;)
 <li>dates: Format is Day, Month, Year</li>
 </ul></li>
 </ul>
+
+<p><a href="assets/files/csv_file_from_email.csv" class="btn flushfooter"><i class="icon-envelope"></i> Attachment.csv</a></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -427,7 +437,7 @@ library(&quot;EML&quot;)
 
 <slide class="" id="slide-12" style="background:;">
   <hgroup>
-    <h2>Put dataset together</h2>
+    <h2>Glue together (data.set)</h2>
   </hgroup>
   <article data-timings="">
     <ul>
@@ -461,25 +471,28 @@ library(&quot;EML&quot;)
     <h2>Your turn (core metadata)</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code>read.csv(&quot;http://cpfaff.github.io/emlforrcourse/assets/files/csv_file_from_email.csv&quot;)
+    <ul>
+<li>Get the data </li>
+</ul>
+
+<pre><code>undescribed_data = read.csv(&quot;http://bit.ly/11Q4GOt&quot;)
 </code></pre>
 
 <ul>
-<li><p>Create the colum definitions</p>
+<li><p>Create the colum definitions (character vector)</p>
 
 <ul>
-<li>Write them into an own variable first!</li>
-<li>Hint: A vector with plain text definitions</li>
+<li>Save to variable (e.g descriptions)</li>
 </ul></li>
-<li><p>Create unit definitions</p>
+<li><p>Create unit definitions (list)</p>
 
 <ul>
-<li>Write them into an own variable first!</li>
-<li>Hint: A list with vectors of key/value pairs</li>
+<li>Save to variable (e.g units)</li>
 <li>Use: unit = &quot;number&quot; (for the count)</li>
 <li>Use: format = &quot;YYYY-MM-DD&quot; (for thed date)</li>
-<li>Ensure that the date column is a date! (as.Date(...))</li>
+<li>Ensure that the date column is a date! (<code>as.Date(...)</code>)</li>
 </ul></li>
+<li><p>Put together (<code>data.set(data, col.defs = descriptions, unit.defs = units)</code>)</p></li>
 </ul>
 
   </article>
@@ -488,33 +501,25 @@ library(&quot;EML&quot;)
 
 <slide class="" id="slide-14" style="background:;">
   <hgroup>
-    <h2>Add contact</h2>
+    <h2>Typical metadata (add more &quot;x&quot;)</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
-<li>Create person object using</li>
-</ul>
-
-<pre><code class="r">claas = eml_person(&quot;Claas-Thido Pfaff &lt;fake@test.com&gt;&quot;)
-</code></pre>
-
-<ul>
-<li>Coerce to a contact object</li>
-</ul>
-
-<pre><code class="r">claas_contact = as(claas, &quot;contact&quot;)
-</code></pre>
-
-<ul>
-<li>Add an address</li>
-</ul>
-
-<pre><code class="r">address &lt;- new(&quot;address&quot;,
-               deliveryPoint = &quot;Universität Leipzig, Johannisallee 21&quot;,
-               city = &quot;Leipzig&quot;,
-               postalCode = &quot;04103&quot;,
-               country = &quot;GER&quot;)
-claas_contact@address = address
+    <pre><code>- eml
+  - dataset
+    - creator 
+    - contact (x)
+    - publisher
+    - title
+    - pubDate
+    - keywords
+    - abstract
+    - intellectualRights
+    - methods
+    - coverage
+    - dataTable (done)
+      - physical
+      - attributeList
+  - additionalMetadata
 </code></pre>
 
   </article>
@@ -523,7 +528,266 @@ claas_contact@address = address
 
 <slide class="" id="slide-15" style="background:;">
   <hgroup>
-    <h2>Put together and save</h2>
+    <h2>Add contact (name, mail)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Create person</li>
+</ul>
+
+<pre><code class="r">claas = eml_person(&quot;Claas-Thido Pfaff &lt;fake@test.com&gt;&quot;)
+</code></pre>
+
+<ul>
+<li>What is it?</li>
+</ul>
+
+<pre><code class="r">class(claas)
+</code></pre>
+
+<pre><code>## [1] &quot;contact&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;EML&quot;
+</code></pre>
+
+<pre><code class="r">typeof(claas)
+</code></pre>
+
+<pre><code>## [1] &quot;S4&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Objects (excursion)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>create an instance from an object</li>
+</ul>
+
+<pre><code>the_new_instance = new(&quot;object name&quot;)
+</code></pre>
+
+<ul>
+<li>Subsetting (not $ but @)</li>
+</ul>
+
+<pre><code>the_new_instance@slotname
+</code></pre>
+
+<ul>
+<li>coercions </li>
+</ul>
+
+<pre><code>as(&quot;22&quot;, &quot;numeric&quot;)
+</code></pre>
+
+<ul>
+<li>Show all slotnames</li>
+</ul>
+
+<pre><code>slotNames(the_new_instance)
+</code></pre>
+
+<ul>
+<li>Slots can contain
+
+<ul>
+<li>All sorts of variable types (text, numeric, lists, oter objects...)</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Add contact (inspect)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">slotNames(claas)
+</code></pre>
+
+<pre><code>## [1] &quot;individualName&quot;        &quot;organizationName&quot;      &quot;positionName&quot;         
+## [4] &quot;address&quot;               &quot;phone&quot;                 &quot;electronicMailAddress&quot;
+## [7] &quot;onlineUrl&quot;             &quot;userID&quot;                &quot;references&quot;
+</code></pre>
+
+<pre><code class="r">claas@individualName@givenName
+</code></pre>
+
+<pre><code>## [1] &quot;Claas-Thido&quot;
+</code></pre>
+
+<pre><code class="r">claas@individualName@surName
+</code></pre>
+
+<pre><code>## [1] &quot;Pfaff&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Add contact (address)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Create the address
+
+<ul>
+<li>create (new)</li>
+</ul></li>
+</ul>
+
+<pre><code class="r">address = new(&quot;address&quot;,
+               deliveryPoint = &quot;Universität Leipzig, Johannisallee 21&quot;,
+               city = &quot;Leipzig&quot;,
+               postalCode = &quot;04103&quot;,
+               country = &quot;GER&quot;)
+</code></pre>
+
+<p></br></p>
+
+<ul>
+<li>Assign to my &quot;address&quot; slot
+
+<ul>
+<li>Subset (@)</li>
+</ul></li>
+</ul>
+
+<pre><code class="r">claas@address = address
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:#EEE;">
+  <hgroup>
+    <h2>Your turn (add creator)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">- eml
+  - dataset
+    - creator (x)
+    - contact (done)
+    - publisher
+    - title 
+    - pubDate
+    - keywords
+    - abstract
+    - intellectualRights 
+    - methods
+    - coverage
+    - dataTable (done)
+      - physical
+      - attributeList
+  - additionalMetadata
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:#EEE;">
+  <hgroup>
+    <h2>Your turn (add creator)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p></br></p>
+
+<ul>
+<li>Create a creator
+
+<ul>
+<li>Use <code>you &lt;- eml_person(&quot;Your Name &lt;yourmail@provider.com&gt;&quot;)</code></li>
+</ul></li>
+<li>Add an address 
+
+<ul>
+<li>address = new(&quot;address&quot;, deliveryPoint = &quot;....&quot;)</li>
+<li>also add: city, postalCode, country</li>
+</ul></li>
+<li>Do not forget to assign the address to your creator!
+
+<ul>
+<li><code>you@address = address</code></li>
+</ul></li>
+<li>Coerce the contact to a creator (save e.g. in <code>you_creator</code>)
+
+<ul>
+<li><code>as(you, &quot;creator&quot;)</code></li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>Show the the right way</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>also allow to download the solution from 
+here on then</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>Typical metadata (add more &quot;x&quot;)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">- eml
+  - dataset
+    - creator (done)
+    - contact (done)
+    - publisher
+    - title (x)
+    - pubDate
+    - keywords
+    - abstract
+    - intellectualRights (x)
+    - methods
+    - coverage
+    - dataTable (done)
+      - physical
+      - attributeList
+  - additionalMetadata
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>Add other</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>*</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <hgroup>
+    <h2>Put all together</h2>
   </hgroup>
   <article data-timings="">
     <ul>
@@ -558,7 +822,7 @@ claas_contact@address = address
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-16" style="background:;">
+<slide class="" id="slide-25" style="background:;">
   <hgroup>
     <h2>Uploaded to FigShare</h2>
   </hgroup>
@@ -569,7 +833,7 @@ claas_contact@address = address
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-17" style="background:;">
+<slide class="" id="slide-26" style="background:;">
   <hgroup>
     <h2>Uploaded to FigShare</h2>
   </hgroup>
@@ -609,7 +873,7 @@ claas_contact@address = address
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-18" style="background:;">
+<slide class="" id="slide-27" style="background:;">
   <hgroup>
     <h2>Read metadata</h2>
   </hgroup>
@@ -639,7 +903,7 @@ claas_contact@address = address
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-19" style="background:;">
+<slide class="" id="slide-28" style="background:;">
   <hgroup>
     <h2>Read metadata</h2>
   </hgroup>
@@ -684,7 +948,7 @@ claas_contact@address = address
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-20" style="background:;">
+<slide class="" id="slide-29" style="background:;">
   <hgroup>
     <h2>Import data</h2>
   </hgroup>
@@ -714,7 +978,7 @@ claas_contact@address = address
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-21" style="background:;">
+<slide class="" id="slide-30" style="background:;">
   <hgroup>
     <h2>Wrap-up</h2>
   </hgroup>
@@ -741,7 +1005,7 @@ claas_contact@address = address
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-22" style="background:;">
+<slide class="" id="slide-31" style="background:;">
   <article data-timings="">
     <div class = "flushcenter">
   <h1>Thanks for your attention!</h1>
@@ -815,13 +1079,13 @@ claas_contact@address = address
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='Typical metadata (add core)'>
+        data-slide=8 title='Typical metadata'>
          8
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='Typical metadata (add more &quot;x&quot;)'>
+        data-slide=9 title='Typical metadata (add core)'>
          9
       </a>
     </li>
@@ -839,7 +1103,7 @@ claas_contact@address = address
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='Put dataset together'>
+        data-slide=12 title='Glue together (data.set)'>
          12
       </a>
     </li>
@@ -851,56 +1115,110 @@ claas_contact@address = address
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='Add contact'>
+        data-slide=14 title='Typical metadata (add more &quot;x&quot;)'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='Put together and save'>
+        data-slide=15 title='Add contact (name, mail)'>
          15
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='Uploaded to FigShare'>
+        data-slide=16 title='Objects (excursion)'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='Uploaded to FigShare'>
+        data-slide=17 title='Add contact (inspect)'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='Read metadata'>
+        data-slide=18 title='Add contact (address)'>
          18
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='Read metadata'>
+        data-slide=19 title='Your turn (add creator)'>
          19
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='Import data'>
+        data-slide=20 title='Your turn (add creator)'>
          20
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Wrap-up'>
+        data-slide=21 title='Show the the right way'>
          21
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title=''>
+        data-slide=22 title='Typical metadata (add more &quot;x&quot;)'>
          22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Add other'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Put all together'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Uploaded to FigShare'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Uploaded to FigShare'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Read metadata'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Read metadata'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Import data'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Wrap-up'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title=''>
+         31
       </a>
     </li>
   </ul>

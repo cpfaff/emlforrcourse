@@ -18,11 +18,16 @@ github:
 
 ## Why metadata matters?
 
+<p>   </p>
 
-* Imagine you are interested in salmon species
-  + Their distribution across N.A. (~ past 30 years)
-  + But you only find publications (no datasets)
-  + You start asking the authors and your network
+* You are interested in salmon species
+  + Distribution across N.A.
+  + ~ past 30 years
+  + Only find publications (no datasets)
+  + You ask the authors and your network
+
+
+<p>   </p>
 
 > He Claas
 > 
@@ -34,13 +39,13 @@ github:
 
 <a href="assets/files/csv_file_from_email.csv" class="btn"><i class="icon-envelope"></i> Attachment.csv</a>
 
-* Download and open the dataset now!
-
 ---
 
 ## Why metadata matters? 
 
 
+
+<p>   </p>
 
 
 |river |spp  |stg   |  ct|dates      |
@@ -48,24 +53,23 @@ github:
 |SAC   |king |smolt | 293|10.10.1991 |
 |SAC   |king |parr  | 410|11.10.1992 |
 |AM    |ccho |smolt | 210|10.10.1993 |
-</br>
 
-* Some you might guess!
-  - river: Abbr. of collection sites
-  - spp: May be species names
-  - stg: Seems to be the life stage
+<p>   </p>
 
-* But what about the rest?
-  - ct: Is numeric (direct or statistic?)
-  - dates: Which date format?
+* These you guess:
+  - river: Abbr. of collection sites (full name)
+  - spp: Abbr. of species names (full name)
+  - stg: The life stage of fish
+
+* But what about the rest/details?
+  - ct: Is numeric (Neasured, statistic, Method)
+  - dates: Which date format? (YMD, YDM)
 
 ---
 
 ## Why metadata matters?
 
-</br>
-
-Thus you ask:
+</br> 
 
 > He Claas
 > 
@@ -86,19 +90,23 @@ Thus you ask:
 
 ## Why metadata matters?
 
-* Without metadata
-  - Valuable data becomes unusable
-  - Even if preserved!
+* We learn: 
+  - Without metadata
+  - Data gets unusalbe and is lost
+  
+<p>   </p>
 
-* With good metadata
-  - Supports the reuse (larger context)
-  - Helps preserve and exchange
+* Metadata standards (DwC, EML)
 
-* We have good tools and standards
-  - Morpho (DataOne), Data-Up (California Libraries), BEF-Data (BEF-China)
-  - ABCD (Access to Biological Collection Data)
-  - Ecological Metadata Language (customizable)
+<p>   </p>
 
+* Ecological Metadata Language (EML, XML)
+  * Allows to capture aspects of data:
+    * Units and categories
+    * Temporal and spatial coverage ...
+    * Contact information ... and much more
+  * In a structured machine readable way
+ 
 <div class = "flushfooter">
   <a href="https://knb.ecoinformatics.org/#tools" class="btn"><i class="icon-home"></i> Morpho</a>
   <a href="http://dataup.cdlib.org/" class="btn"><i class="icon-home"></i> Data-Up</a>
@@ -110,18 +118,18 @@ Thus you ask:
 
 ## The package (About)
 
-* Ecological Metadata Language (XML)
-  * Allows to capture aspects of data:
-    * Units and categories
-    * Temporal and spatial coverage ...
-    * Contact information ... and much more
-  * In a structured machine readable way
-  * Better data exchange, use and preservation
-  
+</br>
+
+* Metadata tools
+  - Morpho (companion online)
+  - Metacat (companion online), Data-Up (Californian Libraries), BEF-Data (BEF-China)
+  - EML for R (initial commit 24 Jun 2013)
+
 * Motivation (R package for EML)
   * Many data undescribed; Biologists in R
   * Introduces a wide spread standard to R
-  * Read + Write metadata, Publish (Data + Metadata)
+  * Read + Write metadata
+  * Publish (Data + Metadata)
 
 <div class = "flushfooter">
   <a href="https://knb.ecoinformatics.org/#tools" class="btn"><i class="icon-home"></i> EML</a>
@@ -169,6 +177,30 @@ library("EML")
 
 ---
 
+## Typical metadata
+
+```
+- eml
+  - dataset
+    - creator
+    - contact
+    - publisher
+    - title
+    - pubDate
+    - keywords
+    - abstract
+    - intellectualRights
+    - methods
+    - coverage
+    - dataTable
+      - physical
+      - attributeList
+  - additionalMetadata
+``` 
+
+---
+
+
 ## Typical metadata (add core)
 
 ```
@@ -184,40 +216,17 @@ library("EML")
     - intellectualRights
     - methods
     - coverage
-    - dataTable (description, categories, units)
+    - dataTable (descriptions, categories, units)
       - physical
       - attributeList
   - additionalMetadata
-```
-
----  
-
-## Typical metadata (add more "x")
-
-```
-- eml
-  - dataset
-    - creator (x)
-    - contact (x)
-    - publisher
-    - title
-    - pubDate
-    - keywords
-    - abstract (x)
-    - intellectualRights (x)
-    - methods
-    - coverage
-    - dataTable (description, categories, units)
-      - physical
-      - attributeList
-  - additionalMetadata
-```
+``` 
 
 ---
 
 ## Create metadata
 
-</br>
+<p>  </p>
 
 * River site used for collection
   - river: sac = The sacramento river, am = The american river  
@@ -229,6 +238,8 @@ library("EML")
   - ct: numeric  
 * The date of data collection: 
   - dates: Format is Day, Month, Year
+
+<a href="assets/files/csv_file_from_email.csv" class="btn flushfooter"><i class="icon-envelope"></i> Attachment.csv</a>
 
 ---
 
@@ -260,7 +271,7 @@ unit_defs = list(c(SAC = "The Sacramento River", AM = "The American River"),
 
 ---
 
-## Put dataset together
+## Glue together (data.set)
 
 * Put together with `data.set()`
 
@@ -283,54 +294,248 @@ described_dataset = data.set(undescribed_data,
 
 ## Your turn (core metadata)
 
+* Get the data 
+
 ```
-read.csv("http://cpfaff.github.io/emlforrcourse/assets/files/csv_file_from_email.csv")
+undescribed_data = read.csv("http://bit.ly/11Q4GOt")
 ```
 
-* Create the colum definitions
-  - Write them into an own variable first!
-  - Hint: A vector with plain text definitions
+* Create the colum definitions (character vector)
+  - Save to variable (e.g descriptions)
 
-* Create unit definitions
-  - Write them into an own variable first!
-  - Hint: A list with vectors of key/value pairs
+* Create unit definitions (list)
+  - Save to variable (e.g units)
   - Use: unit = "number" (for the count)
   - Use: format = "YYYY-MM-DD" (for thed date)
-  - Ensure that the date column is a date! (as.Date(...))
+  - Ensure that the date column is a date! (`as.Date(...)`)
+
+* Put together (`data.set(data, col.defs = descriptions, unit.defs = units)`)
 
 ---
 
-## Add contact
+## Typical metadata (add more "x")
 
-* Create person object using
+```
+- eml
+  - dataset
+    - creator 
+    - contact (x)
+    - publisher
+    - title
+    - pubDate
+    - keywords
+    - abstract
+    - intellectualRights
+    - methods
+    - coverage
+    - dataTable (done)
+      - physical
+      - attributeList
+  - additionalMetadata
+```
+
+---
+
+## Add contact (name, mail)
+
+* Create person
 
 
 ```r
 claas = eml_person("Claas-Thido Pfaff <fake@test.com>")
 ```
 
-* Coerce to a contact object
+* What is it?
 
 
 ```r
-claas_contact = as(claas, "contact")
+class(claas)
 ```
 
-* Add an address
-
+```
+## [1] "contact"
+## attr(,"package")
+## [1] "EML"
+```
 
 ```r
-address <- new("address",
-               deliveryPoint = "Universität Leipzig, Johannisallee 21",
-               city = "Leipzig",
-               postalCode = "04103",
-               country = "GER")
-claas_contact@address = address
+typeof(claas)
+```
+
+```
+## [1] "S4"
 ```
 
 ---
 
-## Put together and save
+## Objects (excursion)
+
+* create an instance from an object
+
+```
+the_new_instance = new("object name")
+```
+
+* Subsetting (not $ but @)
+
+```
+the_new_instance@slotname
+```
+
+* coercions 
+
+```
+as("22", "numeric")
+```
+
+* Show all slotnames
+
+```
+slotNames(the_new_instance)
+```
+
+* Slots can contain
+  - All sorts of variable types (text, numeric, lists, oter objects...)
+
+---
+
+## Add contact (inspect)
+
+
+```r
+slotNames(claas)
+```
+
+```
+## [1] "individualName"        "organizationName"      "positionName"         
+## [4] "address"               "phone"                 "electronicMailAddress"
+## [7] "onlineUrl"             "userID"                "references"
+```
+
+
+```r
+claas@individualName@givenName
+```
+
+```
+## [1] "Claas-Thido"
+```
+
+
+```r
+claas@individualName@surName
+```
+
+```
+## [1] "Pfaff"
+```
+
+---
+
+## Add contact (address)
+
+* Create the address
+  - create (new)
+
+
+```r
+address = new("address",
+               deliveryPoint = "Universität Leipzig, Johannisallee 21",
+               city = "Leipzig",
+               postalCode = "04103",
+               country = "GER")
+```
+
+</br>
+
+* Assign to my "address" slot
+  - Subset (@)
+
+
+```r
+claas@address = address
+```
+
+--- bg:#EEE
+
+## Your turn (add creator)
+
+
+```r
+- eml
+  - dataset
+    - creator (x)
+    - contact (done)
+    - publisher
+    - title 
+    - pubDate
+    - keywords
+    - abstract
+    - intellectualRights 
+    - methods
+    - coverage
+    - dataTable (done)
+      - physical
+      - attributeList
+  - additionalMetadata
+```
+
+--- bg:#EEE
+
+## Your turn (add creator)
+
+</br>
+
+* Create a creator
+  - Use `you <- eml_person("Your Name <yourmail@provider.com>")`
+* Add an address 
+  - address = new("address", deliveryPoint = "....")
+  - also add: city, postalCode, country
+* Do not forget to assign the address to your creator!
+  - `you@address = address`
+* Coerce the contact to a creator (save e.g. in `you_creator`)
+  - `as(you, "creator")`
+
+---
+
+## Show the the right way
+
+* also allow to download the solution from 
+  here on then
+
+---
+
+## Typical metadata (add more "x")
+
+
+```r
+- eml
+  - dataset
+    - creator (done)
+    - contact (done)
+    - publisher
+    - title (x)
+    - pubDate
+    - keywords
+    - abstract
+    - intellectualRights (x)
+    - methods
+    - coverage
+    - dataTable (done)
+      - physical
+      - attributeList
+  - additionalMetadata
+```
+
+---
+
+## Add other 
+
+*
+
+---
+
+## Put all together
 
 * The `eml()` command assembles everything
 

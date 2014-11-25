@@ -1,5 +1,5 @@
-<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml_1.1" packageId="0f6fe1d5-fa0e-4ff6-931d-236035b16371" system="uuid" scope="system">
-  <dataset id="742d4fda-de60-494f-b29a-469c6045b813" scope="document">
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml_1.1" packageId="8cafc91a-c6bf-40c6-9ce8-558fcffe6075" system="uuid" scope="system">
+  <dataset id="8bd51cf0-b796-4387-a778-b73b2aef320f" scope="document">
     <title>This is an example title</title>
     <creator>
       <individualName>
@@ -29,11 +29,11 @@
       </address>
       <electronicMailAddress>fake@test.com</electronicMailAddress>
     </contact>
-    <dataTable id="f74da8c0-446e-4247-878f-345a9f7eca83" system="uuid" scope="system">
+    <dataTable id="f4114a8d-d7e6-4c4e-92be-c7e2a9587b24" system="uuid" scope="system">
       <entityName>data table</entityName>
       <physical>
-        <objectName>data_table_4098ba.csv</objectName>
-        <size>5536</size>
+        <objectName>data_table_463424.csv</objectName>
+        <size>6248</size>
         <characterEncoding>en_US.UTF-8</characterEncoding>
         <dataFormat>
           <textFormat>
@@ -47,7 +47,7 @@
           </textFormat>
         </dataFormat>
       </physical>
-      <attributeList id="25fb01a3-fbf7-45a0-8c19-deececd8f25c">
+      <attributeList id="01e5ee2b-5b36-4fea-ab21-1cdaf387b5ee">
         <attribute>
           <attributeName>river</attributeName>
           <attributeDefinition>River site used for collection</attributeDefinition>
@@ -126,9 +126,13 @@
           <attributeName>dates</attributeName>
           <attributeDefinition>Date of collection</attributeDefinition>
           <measurementScale>
-            <dateTime>
-              <formatString>MYD</formatString>
-            </dateTime>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>YYYY-MM-DD</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
         </attribute>
       </attributeList>
