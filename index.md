@@ -200,7 +200,6 @@ library("EML")
 
 ---
 
-
 ## Typical metadata (add core)
 
 ```
