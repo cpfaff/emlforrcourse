@@ -50,9 +50,9 @@ github:
 
 |river |spp  |stg   |  ct|dates      |
 |:-----|:----|:-----|---:|:----------|
-|SAC   |king |smolt | 293|10.10.1991 |
-|SAC   |king |parr  | 410|11.10.1992 |
-|AM    |ccho |smolt | 210|10.10.1993 |
+|SAC   |king |smolt | 293|1991-10-10 |
+|SAC   |king |parr  | 410|1992-11-10 |
+|AM    |ccho |smolt | 210|1993-10-10 |
 
 <p>   </p>
 
@@ -310,6 +310,8 @@ undescribed_data = read.csv("http://bit.ly/11Q4GOt")
   - Ensure that the date column is a date! (`as.Date(...)`)
 
 * Put together (`data.set(data, col.defs = descriptions, unit.defs = units)`)
+
+<a href="assets/files/task_add_core_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
 
 ---
 

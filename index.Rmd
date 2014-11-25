@@ -57,7 +57,7 @@ undescribed_data = data.frame(river, spp, stg, ct, dates)
 
 <p>   </p>
 
-```{r nometadatashow, echo = F, results = 'asis'}
+```{r nometadatashow, echo = F, results = 'asis', cache=FALSE}
 kable(undescribed_data)
 ```
 
