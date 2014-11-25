@@ -219,7 +219,7 @@ library("EML")
       - physical
       - attributeList
   - additionalMetadata
-``` 
+```
 
 ---
 
