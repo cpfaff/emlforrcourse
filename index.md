@@ -876,6 +876,8 @@ eml_get(metadata_locally, "data.frame")
 ## Your turn (Read/Import)
 
 * Import the metadata from here:
+  - http://bit.ly/1yhi1b3
+  - use `eml_read()`
   - Read the title (hint: use subset with `@`)
   - Extract contact (hint: `eml_get()`)
 
@@ -907,7 +909,7 @@ eml_get(metadata_locally, "data.frame")
 <br>
  * Find this slides: 
 <br>
-  http://cpfaff.github.io/remlgfoe2014
+  http://cpfaff.github.io/emlforrcourse
 <br>
  * Find EML package: 
 <br>

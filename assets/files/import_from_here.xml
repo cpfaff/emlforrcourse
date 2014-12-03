@@ -33,7 +33,7 @@
     <dataTable id="3a323c71-cfc9-4a66-ac4f-46ea45949aad" system="uuid" scope="system">
       <entityName>data table</entityName>
       <physical>
-        <objectName>data_table_e90489.csv</objectName>
+        <objectName>example_csv_file.csv</objectName>
         <size>5712</size>
         <characterEncoding>en_US.UTF-8</characterEncoding>
         <dataFormat>
@@ -49,7 +49,7 @@
         </dataFormat>
         <distribution>
           <online>
-            <url function="download">http://files.figshare.com/1812045/data_table_e90489.csv</url>
+            <url function="download">http://cpfaff.github.io/emlforrcourse/assets/files/example_csv_file.csv</url>
           </online>
         </distribution>
       </physical>
