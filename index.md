@@ -228,7 +228,7 @@ library("EML")
     - intellectualRights (o)
     - methods
     - coverage
-    - dataTable: (x, descr., cats., units)
+    - dataTable (x, descr., cats., units)
       - physical
       - attributeList
   - additionalMetadata
