@@ -35,7 +35,7 @@
   <hgroup class="auto-fadein">
     <h1>The EML R package</h1>
     <h2>Ecological Metadata Language Integration into R</h2>
-    <p>Claas-Thido Pfaff, Carl Boettiger, Karthik Ram, Matt Jones<br/></p>
+    <p>Claas-Thido Pfaff, Carl Boettiger, Karthik Ram, Matt Jones<br/>http://bit.ly/1CEuy07</p>
   </hgroup>
     <a href="https://github.com//emlforrcourse/zipball/gh-pages" class="example">
      Download
@@ -456,13 +456,19 @@ library(&quot;EML&quot;)
 
 <slide class="" id="slide-12" style="background:;">
   <hgroup>
-    <h2>Assemble (data and metad.)</h2>
+    <h2>Assemble</h2>
   </hgroup>
   <article data-timings="">
-    <p></br></p>
+    <p>   </p>
 
 <ul>
-<li>Assemble everything with <code>data.set()</code></li>
+<li>Assemble
+
+<ul>
+<li>core metadadta </li>
+<li>data </li>
+<li>with <code>data.set()</code></li>
+</ul></li>
 </ul>
 
 <pre><code class="r">described_dataset = data.set(undescribed_data,
@@ -470,17 +476,14 @@ library(&quot;EML&quot;)
                              unit.defs = unit_defs)
 </code></pre>
 
-<p>  </p>
+<p>   </p>
 
 <ul>
-<li>We have now! 
+<li>We use the variables just prepared
 
 <ul>
-<li>dataset + core descriptions</li>
-<li>covers:</li>
-<li>columns</li>
-<li>categories</li>
-<li>units</li>
+<li><code>col_defs</code></li>
+<li><code>unit_def</code></li>
 </ul></li>
 </ul>
 
@@ -498,7 +501,6 @@ library(&quot;EML&quot;)
 </ul>
 
 <pre><code class="r">undescribed_data = read.csv(&quot;http://bit.ly/11Q4GOt&quot;)
-undescribed_data$dates = as.Date(undescribed_data$dates)
 </code></pre>
 
 <ul>
@@ -904,7 +906,7 @@ myname@address = myaddress
     <h2>Typical metadata (add more &quot;x&quot;)</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">- eml
+    <pre><code>- eml
   - dataset
     - creator (done)
     - contact (done)
@@ -935,12 +937,12 @@ myname@address = myaddress
 <li>The <code>eml()</code> command assembles</li>
 </ul>
 
-<pre><code class="r">data &lt;- eml(dat = described_dataset,
-            title = &quot;Count of life fish in traps&quot;,
-            contact = claas,
-            creator = claas_creator,
-            intellectualRights = &quot;CC0, Creative commons zero&quot;
-            )
+<pre><code class="r">data = eml(dat = described_dataset,
+           title = &quot;Count of life fish in traps&quot;,
+           contact = claas,
+           creator = claas_creator,
+           intellectualRights = &quot;CC0, Creative commons zero&quot;
+           )
 </code></pre>
 
 <ul>
@@ -956,6 +958,11 @@ myname@address = myaddress
 <ul>
 <li>More often you use <code>.eml</code></li>
 </ul>
+
+<div class = "flushfooter">
+  <a href="assets/files/example_eml_from_url.xml" class="btn"><i class="icon-zoom-in"></i> EML file</a>
+  <a href="assets/files/assets/files/example_csv_file.csv" class="btn"><i class="icon-zoom-in"></i> CSV file</a>
+</div>
 
   </article>
   <!-- Presenter Notes -->
@@ -1020,7 +1027,7 @@ myname@address = myaddress
 
 <slide class="" id="slide-31" style="background:#EEE;">
   <hgroup>
-    <h2>Your turn (asselbe/write out)</h2>
+    <h2>Your turn (assemble/write out)</h2>
   </hgroup>
   <article data-timings="">
     <ul>
@@ -1062,7 +1069,10 @@ myname@address = myaddress
 <li>Read metadata from any EML formated source (File, URL, KNB-ID)</li>
 </ul>
 
-<pre><code class="r">metadata &lt;- eml_read(&quot;mymetadata.xml&quot;)
+<pre><code class="r">metadata_locally = eml_read(&quot;mymetadata.xml&quot;)
+</code></pre>
+
+<pre><code class="r">metadata_online = eml_read(&quot;http://bit.ly/1viuNDZ&quot;)
 </code></pre>
 
 <p>   </p>
@@ -1089,16 +1099,50 @@ myname@address = myaddress
     <h2>Read metadata</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">eml_get(metadata, &quot;contact&quot;)
+    <pre><code class="r">eml_get(metadata_online, &quot;contact&quot;)
 </code></pre>
 
 <pre><code>## [1] &quot;Claas-Thido Pfaff &lt;fake@test.com&gt;&quot;
 </code></pre>
 
-<pre><code class="r">eml_get(metadata, &quot;unit.defs&quot;)
+<pre><code class="r">eml_get(metadata_locally, &quot;col.defs&quot;)
 </code></pre>
 
-<pre><code>## $attribute
+<pre><code>##                        attribute                        attribute 
+## &quot;River site used for collection&quot;            &quot;Species common name&quot; 
+##                        attribute                        attribute 
+##                     &quot;Life Stage&quot;    &quot;Count of live fish in traps&quot; 
+##                        attribute 
+##             &quot;Date of collection&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-34" style="background:;">
+  <hgroup>
+    <h2>Import data</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">eml_get(metadata_locally, &quot;data.set&quot;)
+</code></pre>
+
+<pre><code>## Object of class &quot;data.set&quot;
+##   river  spp   stg  ct      dates
+## 1   SAC king smolt 293 1991-10-10
+## 2   SAC king  parr 410 1992-11-10
+## 3    AM ccho smolt 210 1993-10-10
+## Slot &quot;col.defs&quot;:
+##                        attribute                        attribute 
+## &quot;River site used for collection&quot;            &quot;Species common name&quot; 
+##                        attribute                        attribute 
+##                     &quot;Life Stage&quot;    &quot;Count of live fish in traps&quot; 
+##                        attribute 
+##             &quot;Date of collection&quot; 
+## 
+## Slot &quot;unit.defs&quot;:
+## $attribute
 ##                    SAC                     AM 
 ## &quot;The Sacramento River&quot;   &quot;The American River&quot; 
 ## 
@@ -1121,42 +1165,62 @@ myname@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-34" style="background:;">
+<slide class="" id="slide-35" style="background:;">
   <hgroup>
     <h2>Import data</h2>
   </hgroup>
   <article data-timings="">
     <ul>
-<li>Access the data based on metadata information</li>
+<li>Or only the raw data</li>
 </ul>
 
-<pre><code class="r">example_dataset = eml_get(metadata, &quot;data.frame&quot;)
+<pre><code class="r">eml_get(metadata_locally, &quot;data.frame&quot;)
 </code></pre>
 
-<pre><code>## Error: invalid &#39;url&#39; argument
-</code></pre>
-
-<pre><code class="r">as(example_dataset, &quot;data.frame&quot;)
-</code></pre>
-
-<pre><code>## Error: object &#39;example_dataset&#39; not found
+<pre><code>##   river  spp   stg  ct      dates
+## 1   SAC king smolt 293 1991-10-10
+## 2   SAC king  parr 410 1992-11-10
+## 3    AM ccho smolt 210 1993-10-10
 </code></pre>
 
 <ul>
-<li>Just display a subset of it here</li>
+<li>Note using 
+
+<ul>
+<li><code>data.frame</code> not</li>
+<li><code>data.set</code> here</li>
+</ul></li>
 </ul>
-
-<pre><code class="r">example_dataset
-</code></pre>
-
-<pre><code>## Error: object &#39;example_dataset&#39; not found
-</code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-35" style="background:;">
+<slide class="" id="slide-36" style="background:;">
+  <hgroup>
+    <h2>Your turn (Read/Import)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Import the metadata from here:</p>
+
+<ul>
+<li>Read the title (hint: use subset with <code>@</code>)</li>
+<li>Extract contact (hint: <code>eml_get()</code>)</li>
+</ul></li>
+<li><p>Get the core data and metadata (hint: <code>eml_get()</code>)</p>
+
+<ul>
+<li>extract the data.set </li>
+<li>Extract the data.frame</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-37" style="background:;">
   <hgroup>
     <h2>Wrap-up</h2>
   </hgroup>
@@ -1182,7 +1246,7 @@ myname@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-36" style="background:;">
+<slide class="" id="slide-38" style="background:;">
   <article data-timings="">
     <div class = "flushcenter">
   <h1>Thanks for your attention!</h1>
@@ -1280,7 +1344,7 @@ myname@address = myaddress
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='Assemble (data and metad.)'>
+        data-slide=12 title='Assemble'>
          12
       </a>
     </li>
@@ -1394,7 +1458,7 @@ myname@address = myaddress
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=31 title='Your turn (asselbe/write out)'>
+        data-slide=31 title='Your turn (assemble/write out)'>
          31
       </a>
     </li>
@@ -1418,14 +1482,26 @@ myname@address = myaddress
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=35 title='Wrap-up'>
+        data-slide=35 title='Import data'>
          35
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title=''>
+        data-slide=36 title='Your turn (Read/Import)'>
          36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Wrap-up'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title=''>
+         38
       </a>
     </li>
   </ul>

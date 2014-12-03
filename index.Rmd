@@ -2,7 +2,7 @@
 title       : The EML R package
 subtitle    : Ecological Metadata Language Integration into R
 author      : Claas-Thido Pfaff, Carl Boettiger, Karthik Ram, Matt Jones
-job         : 
+job         : http://bit.ly/1CEuy07
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
@@ -50,7 +50,7 @@ river = c("SAC",  "SAC",   "AM")
 spp   = c("king",  "king", "ccho")
 stg   = c("smolt", "parr", "smolt")
 ct    = c(293,    410,    210)
-dates = as.Date(c("1991-10-10", "1992-11-10", "1993-10-10"))
+dates = c("1991-10-10", "1992-11-10", "1993-10-10")
 undescribed_data = data.frame(river, spp, stg, ct, dates)
 ```
 
@@ -288,11 +288,14 @@ unit_defs = list(c(SAC = "The Sacramento River", AM = "The American River"),
 
 ---
 
-## Assemble (data and metad.)
+## Assemble
 
-</br>
+<p>   </p>
 
-* Assemble everything with `data.set()`
+* Assemble
+  - core metadadta 
+  - data 
+  - with `data.set()`
 
 ```{r put_together}
 described_dataset = data.set(undescribed_data,
@@ -300,14 +303,11 @@ described_dataset = data.set(undescribed_data,
                              unit.defs = unit_defs)
 ```
 
-<p>  </p>
+<p>   </p>
 
-* We have now! 
-  - dataset + core descriptions
-  - covers:
-  - columns
-  - categories
-  - units
+* We use the variables just prepared
+  - `col_defs`
+  - `unit_def`
 
 --- bg:#EEE
 
@@ -317,7 +317,6 @@ described_dataset = data.set(undescribed_data,
 
 ```{r your_turn_core_metadata, eval = F}
 undescribed_data = read.csv("http://bit.ly/11Q4GOt")
-undescribed_data$dates = as.Date(undescribed_data$dates)
 ```
 
 * Create the colum definitions (character vector)
@@ -590,7 +589,7 @@ new("contact", individualName = new("individualName",
 
 ## Typical metadata (add more "x")
 
-```{r eval=FALSE}
+```
 - eml
   - dataset
     - creator (done)
@@ -616,12 +615,12 @@ new("contact", individualName = new("individualName",
 * The `eml()` command assembles
 
 ```{r assemble_eml, eval = T}
-data <- eml(dat = described_dataset,
-            title = "Count of life fish in traps",
-            contact = claas,
-            creator = claas_creator,
-            intellectualRights = "CC0, Creative commons zero"
-            )
+data = eml(dat = described_dataset,
+           title = "Count of life fish in traps",
+           contact = claas,
+           creator = claas_creator,
+           intellectualRights = "CC0, Creative commons zero"
+           )
 ```
 
 * Write out the EML to a file
@@ -631,6 +630,11 @@ eml_write(data, file="mymetadata.xml")
 ```
 
 * More often you use `.eml`
+
+<div class = "flushfooter">
+  <a href="assets/files/example_eml_from_url.xml" class="btn"><i class="icon-zoom-in"></i> EML file</a>
+  <a href="assets/files/assets/files/example_csv_file.csv" class="btn"><i class="icon-zoom-in"></i> CSV file</a>
+</div>
 
 ---
 
@@ -671,7 +675,7 @@ Your article has been created! Your id number is 1256252
 
 --- bg:#EEE
 
-## Your turn (asselbe/write out)
+## Your turn (assemble/write out)
 
 * Assemble 
   - The dataset + core metadata (you created)
@@ -697,12 +701,12 @@ Your article has been created! Your id number is 1256252
   
 * Read metadata from any EML formated source (File, URL, KNB-ID)
 
-```{r reading_befchina_334}
-metadata <- eml_read("mymetadata.xml")
+```{r get_the_data}
+metadata_locally = eml_read("mymetadata.xml")
 ```
 
-```
-example_eml_from_url.xml
+```{r get_the_data_online}
+metadata_online = eml_read("http://bit.ly/1viuNDZ")
 ```
 
 <p>   </p>
@@ -720,29 +724,46 @@ example_eml_from_url.xml
 ## Read metadata
   
 ```{r extract_creator, eval=T}
-eml_get(metadata, "contact")
+eml_get(metadata_online, "contact")
 ```  
   
 ```{r extract_coverage, eval=T}
-eml_get(metadata, "unit.defs")
+eml_get(metadata_locally, "col.defs")
 ```
 
 ---
 
 ## Import data
-
-* Access the data based on metadata information
   
-```{r import_the_dataset, eval=T}
-example_dataset = eml_get(metadata, "data.frame")
-as(example_dataset, "data.frame")
+```{r extract_from_local_dataset}
+eml_get(metadata_locally, "data.set")
 ```
 
-* Just display a subset of it here
+---
 
-```{r display_part_of_the_data, eval=TRUE}
-example_dataset
+## Import data
+  
+* Or only the raw data
+
+```{r extract_from_local_dataframe}
+eml_get(metadata_locally, "data.frame")
 ```
+
+* Note using 
+  - `data.frame` not
+  - `data.set` here
+
+---
+
+## Your turn (Read/Import)
+
+* Import the metadata from here:
+  - Read the title (hint: use subset with `@`)
+  - Extract contact (hint: `eml_get()`)
+
+* Get the core data and metadata (hint: `eml_get()`)
+  - extract the data.set 
+  - Extract the data.frame
 
 ---
 

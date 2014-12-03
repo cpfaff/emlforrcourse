@@ -2,7 +2,7 @@
 title       : The EML R package
 subtitle    : Ecological Metadata Language Integration into R
 author      : Claas-Thido Pfaff, Carl Boettiger, Karthik Ram, Matt Jones
-job         : 
+job         : http://bit.ly/1CEuy07
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
@@ -283,11 +283,14 @@ unit_defs = list(c(SAC = "The Sacramento River", AM = "The American River"),
 
 ---
 
-## Assemble (data and metad.)
+## Assemble
 
-</br>
+<p>   </p>
 
-* Assemble everything with `data.set()`
+* Assemble
+  - core metadadta 
+  - data 
+  - with `data.set()`
 
 
 ```r
@@ -296,14 +299,11 @@ described_dataset = data.set(undescribed_data,
                              unit.defs = unit_defs)
 ```
 
-<p>  </p>
+<p>   </p>
 
-* We have now! 
-  - dataset + core descriptions
-  - covers:
-  - columns
-  - categories
-  - units
+* We use the variables just prepared
+  - `col_defs`
+  - `unit_def`
 
 --- bg:#EEE
 
@@ -314,7 +314,6 @@ described_dataset = data.set(undescribed_data,
 
 ```r
 undescribed_data = read.csv("http://bit.ly/11Q4GOt")
-undescribed_data$dates = as.Date(undescribed_data$dates)
 ```
 
 * Create the colum definitions (character vector)
@@ -640,8 +639,7 @@ new("contact", individualName = new("individualName",
 
 ## Typical metadata (add more "x")
 
-
-```r
+```
 - eml
   - dataset
     - creator (done)
@@ -668,12 +666,12 @@ new("contact", individualName = new("individualName",
 
 
 ```r
-data <- eml(dat = described_dataset,
-            title = "Count of life fish in traps",
-            contact = claas,
-            creator = claas_creator,
-            intellectualRights = "CC0, Creative commons zero"
-            )
+data = eml(dat = described_dataset,
+           title = "Count of life fish in traps",
+           contact = claas,
+           creator = claas_creator,
+           intellectualRights = "CC0, Creative commons zero"
+           )
 ```
 
 * Write out the EML to a file
@@ -688,6 +686,11 @@ eml_write(data, file="mymetadata.xml")
 ```
 
 * More often you use `.eml`
+
+<div class = "flushfooter">
+  <a href="assets/files/example_eml_from_url.xml" class="btn"><i class="icon-zoom-in"></i> EML file</a>
+  <a href="assets/files/assets/files/example_csv_file.csv" class="btn"><i class="icon-zoom-in"></i> CSV file</a>
+</div>
 
 ---
 
@@ -730,7 +733,7 @@ Your article has been created! Your id number is 1256252
 
 --- bg:#EEE
 
-## Your turn (asselbe/write out)
+## Your turn (assemble/write out)
 
 * Assemble 
   - The dataset + core metadata (you created)
@@ -758,7 +761,12 @@ Your article has been created! Your id number is 1256252
 
 
 ```r
-metadata <- eml_read("mymetadata.xml")
+metadata_locally = eml_read("mymetadata.xml")
+```
+
+
+```r
+metadata_online = eml_read("http://bit.ly/1viuNDZ")
 ```
 
 <p>   </p>
@@ -777,7 +785,7 @@ metadata <- eml_read("mymetadata.xml")
   
 
 ```r
-eml_get(metadata, "contact")
+eml_get(metadata_online, "contact")
 ```
 
 ```
@@ -786,10 +794,42 @@ eml_get(metadata, "contact")
   
 
 ```r
-eml_get(metadata, "unit.defs")
+eml_get(metadata_locally, "col.defs")
 ```
 
 ```
+##                        attribute                        attribute 
+## "River site used for collection"            "Species common name" 
+##                        attribute                        attribute 
+##                     "Life Stage"    "Count of live fish in traps" 
+##                        attribute 
+##             "Date of collection"
+```
+
+---
+
+## Import data
+  
+
+```r
+eml_get(metadata_locally, "data.set")
+```
+
+```
+## Object of class "data.set"
+##   river  spp   stg  ct      dates
+## 1   SAC king smolt 293 1991-10-10
+## 2   SAC king  parr 410 1992-11-10
+## 3    AM ccho smolt 210 1993-10-10
+## Slot "col.defs":
+##                        attribute                        attribute 
+## "River site used for collection"            "Species common name" 
+##                        attribute                        attribute 
+##                     "Life Stage"    "Count of live fish in traps" 
+##                        attribute 
+##             "Date of collection" 
+## 
+## Slot "unit.defs":
 ## $attribute
 ##                    SAC                     AM 
 ## "The Sacramento River"   "The American River" 
@@ -812,36 +852,36 @@ eml_get(metadata, "unit.defs")
 ---
 
 ## Import data
-
-* Access the data based on metadata information
   
-
-```r
-example_dataset = eml_get(metadata, "data.frame")
-```
-
-```
-## Error: invalid 'url' argument
-```
-
-```r
-as(example_dataset, "data.frame")
-```
-
-```
-## Error: object 'example_dataset' not found
-```
-
-* Just display a subset of it here
+* Or only the raw data
 
 
 ```r
-example_dataset
+eml_get(metadata_locally, "data.frame")
 ```
 
 ```
-## Error: object 'example_dataset' not found
+##   river  spp   stg  ct      dates
+## 1   SAC king smolt 293 1991-10-10
+## 2   SAC king  parr 410 1992-11-10
+## 3    AM ccho smolt 210 1993-10-10
 ```
+
+* Note using 
+  - `data.frame` not
+  - `data.set` here
+
+---
+
+## Your turn (Read/Import)
+
+* Import the metadata from here:
+  - Read the title (hint: use subset with `@`)
+  - Extract contact (hint: `eml_get()`)
+
+* Get the core data and metadata (hint: `eml_get()`)
+  - extract the data.set 
+  - Extract the data.frame
 
 ---
 
