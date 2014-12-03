@@ -1,0 +1,120 @@
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml_1.1" packageId="40842c16-f2fb-4a44-a472-8b7a8732417b" system="uuid" scope="system">
+  <dataset id="eac9875d-c28a-467a-a913-155b78e15c54" scope="document">
+    <title>metadata</title>
+    <creator>
+      <individualName>
+        <givenName>Carl</givenName>
+        <surName>Boettiger</surName>
+      </individualName>
+      <electronicMailAddress>cboettig@ropensci.org</electronicMailAddress>
+    </creator>
+    <pubDate>2014-11-21</pubDate>
+    <intellectualRights>CC0, http://creativecommons.org/publicdomain/zero/1.0</intellectualRights>
+    <contact>
+      <individualName>
+        <givenName>Carl</givenName>
+        <surName>Boettiger</surName>
+      </individualName>
+      <electronicMailAddress>cboettig@ropensci.org</electronicMailAddress>
+    </contact>
+    <dataTable id="33f46f26-004c-417a-a87d-9320b109bf1a" system="uuid" scope="system">
+      <entityName>data table</entityName>
+      <physical>
+        <objectName>data_table_0daaf3.csv</objectName>
+        <size>2504</size>
+        <characterEncoding>en_US.UTF-8</characterEncoding>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <numFooterLines>0</numFooterLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+      </physical>
+      <attributeList id="1db02919-127d-48e2-aa55-75aee1383df0">
+        <attribute>
+          <attributeName>river</attributeName>
+          <attributeDefinition>River site used for collection</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>SAC</code>
+                    <definition>The Sacramento River</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>AM</code>
+                    <definition>The American River</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>spp</attributeName>
+          <attributeDefinition>Species scientific name</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Scientific name</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>stg</attributeName>
+          <attributeDefinition>Life Stage</attributeDefinition>
+          <measurementScale>
+            <ordinal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>parr</code>
+                    <definition>third life stage</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>smolt</code>
+                    <definition>fourth life stage</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </ordinal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>ct</attributeName>
+          <attributeDefinition>count of live fish in traps</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>number</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>day</attributeName>
+          <attributeDefinition>The day on which traps were sampled</attributeDefinition>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY-MM-DD</formatString>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <caseSensitive>yes</caseSensitive>
+      <numberOfRecords>3</numberOfRecords>
+    </dataTable>
+  </dataset>
+</eml:eml>

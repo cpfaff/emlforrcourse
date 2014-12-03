@@ -26,7 +26,6 @@ github:
   + Only find publications (no datasets)
   + You ask the authors and your network
 
-
 <p>   </p>
 
 > He Claas
@@ -41,7 +40,7 @@ github:
 
 ---
 
-## Why metadata matters? 
+## Why metadata matters?
 
 
 
@@ -62,14 +61,20 @@ github:
   - stg: The life stage of fish
 
 * But what about the rest/details?
-  - ct: Is numeric (Neasured, statistic, Method)
+  - ct: Is numeric (Measured, Statistics, Method)
   - dates: Which date format? (YMD, YDM)
 
 ---
 
 ## Why metadata matters?
 
-</br> 
+</br>
+
+<p>   </p>
+
+* You ask and get the answer:
+
+<p>   </p>
 
 > He Claas
 > 
@@ -84,6 +89,8 @@ github:
 >  
 > -- *All the best Karl*
 
+<p>   </p>
+
 * With that information you can start use the data!
 
 ---
@@ -91,9 +98,9 @@ github:
 ## Why metadata matters?
 
 * We learn: 
-  - Without metadata
-  - Data gets unusalbe and is lost
-  
+  - Without proper metadata
+  - data unusalbe and lost
+
 <p>   </p>
 
 * Metadata standards (DwC, EML)
@@ -118,11 +125,11 @@ github:
 
 ## The package (About)
 
-</br>
-
 * Metadata tools
-  - Morpho (companion online)
-  - Metacat (companion online), Data-Up (Californian Libraries), BEF-Data (BEF-China)
+  - Morpho (DataOne, KNB)
+  - Metacat (DataOne, KNB)
+  - Data-Up (Californian Libraries)
+  - BEF-Data (BEF-China)
   - EML for R (initial commit 24 Jun 2013)
 
 * Motivation (R package for EML)
@@ -155,16 +162,22 @@ github:
 
 ## The package (Install)
 
+<p>   </p>
+
 * Not yet available via CRAN
 * Source code via GitHub
   * https://github.com/ropensci/EML
-  
+
+<p>   </p>
+
 * Devtools (Hadley Wickham)
   
 ```
 install.packages("devtools")
 library("devtools")
 ```
+
+<p>   </p>
 
 * Install from github
 
@@ -182,17 +195,17 @@ library("EML")
 ```
 - eml
   - dataset
-    - creator
-    - contact
+    - creator (o)
+    - contact (o)
     - publisher
-    - title
+    - title (o)
     - pubDate
     - keywords
     - abstract
-    - intellectualRights
+    - intellectualRights (o)
     - methods
     - coverage
-    - dataTable
+    - dataTable (o)
       - physical
       - attributeList
   - additionalMetadata
@@ -205,17 +218,17 @@ library("EML")
 ```
 - eml
   - dataset
-    - creator
-    - contact
+    - creator (o)
+    - contact (o)
     - publisher
-    - title
+    - title (o)
     - pubDate
     - keywords
     - abstract
-    - intellectualRights
+    - intellectualRights (o)
     - methods
     - coverage
-    - dataTable: descr., cats., units
+    - dataTable: (x, descr., cats., units)
       - physical
       - attributeList
   - additionalMetadata
@@ -224,8 +237,6 @@ library("EML")
 ---
 
 ## Create metadata
-
-<p>  </p>
 
 * River site used for collection
   - river: sac = The sacramento river, am = The american river  
@@ -237,6 +248,8 @@ library("EML")
   - ct: numeric  
 * The date of data collection: 
   - dates: Format is Day, Month, Year
+
+<p>  </p>
 
 <a href="assets/files/csv_file_from_email.csv" class="btn flushfooter"><i class="icon-envelope"></i> Attachment.csv</a>
 
@@ -264,15 +277,17 @@ col_defs = c("River site used for collection",
 unit_defs = list(c(SAC = "The Sacramento River", AM = "The American River"),
                  c(king = "King Salmon", ccho = "Coho Salmon"),
                  c(parr = "third life stage", smolt = "fourth life stage"),
-                 unit = "number",
-                 format = "YYYY-MM-DD")
+                 c(unit = "number"),
+                 c(format = "YYYY-MM-DD"))
 ```
 
 ---
 
-## Glue together (data.set)
+## Assemble (data and metad.)
 
-* Put together with `data.set()`
+</br>
+
+* Assemble everything with `data.set()`
 
 
 ```r
@@ -281,13 +296,14 @@ described_dataset = data.set(undescribed_data,
                              unit.defs = unit_defs)
 ```
 
-* However there is still general information missing:
-  - title (add now)
-  - absract
-  - temporal and spatial coverage
-  - contact person (add now)
-  - creator
-  - and other things ...
+<p>  </p>
+
+* We have now! 
+  - dataset + core descriptions
+  - covers:
+  - columns
+  - categories
+  - units
 
 --- bg:#EEE
 
@@ -295,8 +311,10 @@ described_dataset = data.set(undescribed_data,
 
 * Get the data 
 
-```
+
+```r
 undescribed_data = read.csv("http://bit.ly/11Q4GOt")
+undescribed_data$dates = as.Date(undescribed_data$dates)
 ```
 
 * Create the colum definitions (character vector)
@@ -305,10 +323,10 @@ undescribed_data = read.csv("http://bit.ly/11Q4GOt")
 * Create unit definitions (list)
   - Save to variable (e.g units)
   - Use: unit = "number" (for the count)
-  - Use: format = "YYYY-MM-DD" (for thed date)
-  - Ensure that the date column is a date! (`as.Date(...)`)
-
-* Put together (`data.set(data, col.defs = descriptions, unit.defs = units)`)
+  - Use: format = "YYYY-MM-DD" (for the date)
+ 
+* Assemble (`data.set(data, col.defs = descriptions, unit.defs = units)`)
+  - save to variable (e.g data_with_core_metadata)
 
 <a href="assets/files/task_add_core_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
 
@@ -319,14 +337,14 @@ undescribed_data = read.csv("http://bit.ly/11Q4GOt")
 ```
 - eml
   - dataset
-    - creator 
-    - contact (x)
+    - creator (x)
+    - contact (o)
     - publisher
-    - title
+    - title (o)
     - pubDate
     - keywords
     - abstract
-    - intellectualRights
+    - intellectualRights (o)
     - methods
     - coverage
     - dataTable (done)
@@ -337,45 +355,43 @@ undescribed_data = read.csv("http://bit.ly/11Q4GOt")
 
 ---
 
-## Add contact (name, mail)
+## Objects (excursion)
 
-* Create person
+* create an instance from an object
+
+```
+the_new_instance = new("contact")
+```
+
+* show all variables (slotnames)
 
 
 ```r
-claas = eml_person("Claas-Thido Pfaff <fake@test.com>")
-```
-
-* What is it?
-
-
-```r
-class(claas)
+getSlots("contact")
 ```
 
 ```
-## [1] "contact"
-## attr(,"package")
-## [1] "EML"
+##        individualName      organizationName          positionName 
+##      "individualName"           "character"           "character" 
+##               address                 phone electronicMailAddress 
+##             "address"           "character"           "character" 
+##             onlineUrl                userID            references 
+##           "character"           "character"    "ListOfreferences"
 ```
 
-```r
-typeof(claas)
 ```
-
-```
-## [1] "S4"
+slotNames("contact")
 ```
 
 ---
 
 ## Objects (excursion)
 
-* create an instance from an object
-
-```
-the_new_instance = new("object name")
-```
+* Slots can contain var. data types:
+  - character
+  - numeric 
+  - lists
+  - other objects
 
 * Subsetting (not $ but @)
 
@@ -389,18 +405,22 @@ the_new_instance@slotname
 as("22", "numeric")
 ```
 
-* Show all slotnames
-
-```
-slotNames(the_new_instance)
-```
-
-* Slots can contain
-  - All sorts of variable types (text, numeric, lists, oter objects...)
-
 ---
 
-## Add contact (inspect)
+## Add creator (name, mail)
+
+
+```r
+claas = eml_person("Claas-Thido Pfaff <fake@test.com>")
+```
+
+```
+new("contact", 
+  individualName = new("individualName", 
+                        givenName = "Claas-Thido Pfaff", 
+                        surName = "Pfaff"), 
+  electronicMailAddress = "fake@test.com")
+```
 
 
 ```r
@@ -413,13 +433,25 @@ slotNames(claas)
 ## [7] "onlineUrl"             "userID"                "references"
 ```
 
+---
+
+## Add creator
+
 
 ```r
-claas@individualName@givenName
+claas@individualName
 ```
 
 ```
+## An object of class "individualName"
+## Slot "salutation":
+## character(0)
+## 
+## Slot "givenName":
 ## [1] "Claas-Thido"
+## 
+## Slot "surName":
+## [1] "Pfaff"
 ```
 
 
@@ -433,46 +465,105 @@ claas@individualName@surName
 
 ---
 
-## Add contact (address)
+## Add creator (address)
 
-* Create the address
-  - create (new)
+
+```r
+getSlots("address")
+```
+
+```
+##      deliveryPoint               city administrativeArea 
+##        "character"        "character"        "character" 
+##         postalCode            country         references 
+##        "character"        "character" "ListOfreferences"
+```
 
 
 ```r
 address = new("address",
-               deliveryPoint = "Universität Leipzig, Johannisallee 21",
-               city = "Leipzig",
-               postalCode = "04103",
-               country = "GER")
+              deliveryPoint = "Universität Leipzig, Johannisallee 21",
+              city          = "Leipzig",
+              postalCode    = "04103",
+              country       = "GER")
 ```
-
-</br>
-
-* Assign to my "address" slot
-  - Subset (@)
 
 
 ```r
 claas@address = address
 ```
 
---- bg:#EEE
+---
 
-## Your turn (add creator)
+## Add creator (inspect)
+
+* Which class it that person object of?
 
 
 ```r
+class(claas)
+```
+
+```
+## [1] "contact"
+## attr(,"package")
+## [1] "EML"
+```
+
+<p>   </p>
+
+* It is a contact not a creator!
+  - Coerce it
+
+
+```r
+claas_creator = as(claas, "creator")
+```
+
+
+
+<p>   </p>
+
+* Why is this important?
+
+---
+
+## It is important because!
+
+* Class names and slot names
+  - get fields in the EML!
+
+```
+<creator>
+  <individualName>
+    <givenName>Claas-Thido</givenName>
+    <surName>Pfaff</surName>
+  </individualName>
+  <address>
+    <deliveryPoint>Universität Leipzig, Johannisallee 21</deliveryPoint>
+    <city>Leipzig</city>
+    <postalCode>04103</postalCode>
+    <country>GER</country>
+  </address>
+  <electronicMailAddress>fake@test.com</electronicMailAddress>
+</creator>
+```
+
+--- bg:#EEE
+
+## Your turn (add contact)
+
+```
 - eml
   - dataset
-    - creator (x)
-    - contact (done)
+    - creator (done)
+    - contact (x)
     - publisher
-    - title 
+    - title (o)
     - pubDate
     - keywords
     - abstract
-    - intellectualRights 
+    - intellectualRights (o)
     - methods
     - coverage
     - dataTable (done)
@@ -483,26 +574,67 @@ claas@address = address
 
 --- bg:#EEE
 
-## Your turn (add creator)
+## Your turn (add contact)
 
 </br>
 
-* Create a creator
-  - Use `you <- eml_person("Your Name <yourmail@provider.com>")`
+* Add a contact
+  - Use `you = eml_person("Your Name <yourmail@provider.com>")`
 * Add an address 
-  - address = new("address", deliveryPoint = "....")
+  - `address = new("address", deliveryPoint = "....")`
   - also add: city, postalCode, country
-* Do not forget to assign the address to your creator!
+  - hint: `slotNames("address")`
+* Do not forget to assign the address to your contact!
   - `you@address = address`
-* Coerce the contact to a creator (save e.g. in `you_creator`)
-  - `as(you, "creator")`
 
----
+<a href="assets/files/task_add_contact_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
 
-## Show the the right way
+--- bg:#EEE
 
-* also allow to download the solution from 
-  here on then
+## Your turn (add contact 1)
+
+* Convenient 
+  - with `eml_person()`
+  - Create address
+  - Assign address
+
+<p>   </p>
+
+
+```r
+myname = eml_person("J. Steidle <steidle@fake.com>")
+myaddress = new("address",
+              deliveryPoint = "University Hohenheim, Schloss Hohenheim 1",
+              city          = "Stuttgart",
+              postalCode    = "70599",
+              country       = "GER")
+myname@address = myaddress
+```
+
+<a href="assets/files/task_add_contact_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
+
+--- bg:#EEE
+
+## Your turn (add contact 2)
+
+* More verbose
+  - More basic (no wrapper function)
+  - Everything in one block
+
+```
+new("contact", individualName = new("individualName", 
+                                                    givenName = "Claas-Thido Pfaff", 
+                                                    surName = "Pfaff"), 
+               electronicMailAddress = "claas-thido.pfaff@uni-leipzig.de",
+               phone = "+49-341-97-38587",
+               address = new("address",
+                                      deliveryPoint = "Universität Leipzig, Johannisallee 21",
+                                      city = "Leipzig",
+                                      postalCode = "04103",
+                                      country = "GER")
+```
+
+<a href="assets/files/task_add_contact_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
 
 ---
 
@@ -530,21 +662,17 @@ claas@address = address
 
 ---
 
-## Add other 
-
-*
-
----
-
 ## Put all together
 
-* The `eml()` command assembles everything
+* The `eml()` command assembles
 
 
 ```r
 data <- eml(dat = described_dataset,
-            title = "This is an example title",
-            contact = claas_contact
+            title = "Count of life fish in traps",
+            contact = claas,
+            creator = claas_creator,
+            intellectualRights = "CC0, Creative commons zero"
             )
 ```
 
@@ -552,76 +680,75 @@ data <- eml(dat = described_dataset,
 
 
 ```r
-eml_write(data, file="mymetadata.eml")
+eml_write(data, file="mymetadata.xml")
 ```
+
+```
+## [1] "mymetadata.xml"
+```
+
+* More often you use `.eml`
+
+---
+
+## Publish (curr. figshare, knb)
 
 * Publish to figshare (requires `rfigshare` package)
 
 
 ```r
-eml_publish("mymetadata.eml", 
+eml_publish("mymetadata.xml", 
             description="Example EML file from EML",
             categories = "Ecology", 
             tags = "EML", 
             destination="figshare")
 ```
 
+
+```r
+Your article has been created! Your id number is 1256252
+[1] 1256252
+```
+
+* Requires
+  - R-Package (`rfigshare`)
+  - Figshare account (http://figshare.com)
+
 ---
 
-## Uploaded to FigShare
+## Publish (curr. figshare, knb)
 
-<img src="assets/img/uploaded_csv_and_metadata_two_figshare.png" style="width: 800px;"/>
+<img src="assets/img/uploaded_csv_and_metadata_one.png" style="width: 800px;"/>
 
 ---
 
-## Uploaded to FigShare
-
-* Metadata
-
-<img src="assets/img/uploaded_csv_and_metadata_two_xml_shown.png" style="width: 800px;"/>
-
-* Data
+## Publish (curr. figshare, knb)
 
 <img src="assets/img/uploaded_csv_and_metadata_two_figshare_csv_shown.png" style="width: 800px;"/>
 
+<img src="assets/img/uploaded_csv_and_metadata_two_xml_shown.png" style="width: 800px;"/>
 
+--- bg:#EEE
 
+## Your turn (asselbe/write out)
 
+* Assemble 
+  - The dataset + core metadata (you created)
+  - the contact (you created)
 
+* Add a title and usage rights
 
+`title = "Count of life fish in traps of the sacramento and american river"`
 
+`license = "CC0, http://creativecommons.org/publicdomain/zero/1.0"`
 
+* Hint:
+  `final = eml(dat = ..., title =, contact = ...)`
+  
+* Write out the metadata and data
+  - Hint: eml_write(final, file = "xy.xml")
 
-
-
-
-
-## Idea collection practice
-
-Read data and metadata:
-  + Import a dataset
-  + Extract contact person
-  + Extract a column description
-
-Write data and metadata:
-  + Download an example dataset
-  + Add the core metadata (units: dictionary, dates, descriptions, classes)
-  + Show the most common metadata fields 
-  + Let them create and add (creator, contact, title, intellectual rights)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<a href="assets/files/task_write_out_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
 
 ---
 
@@ -631,11 +758,12 @@ Write data and metadata:
 
 
 ```r
-metadata <- eml_read("http://china.befdata.biow.uni-leipzig.de/datasets/334.eml")
+metadata <- eml_read("mymetadata.xml")
 ```
 
+<p>   </p>
+
 * Then use `eml_get(metadata, "xy")`
-  - csv_filepaths
   - coverage
   - contact
   - unit.defs
@@ -649,44 +777,36 @@ metadata <- eml_read("http://china.befdata.biow.uni-leipzig.de/datasets/334.eml"
   
 
 ```r
-eml_get(metadata, "creator")
+eml_get(metadata, "contact")
 ```
 
 ```
-## [1] "Anne Lang <anne_christina.lang@uni-leipzig.de> [cre]"
-## [2] "Werner HÃ¤rdtle <haerdtle@uni-lueneburg.de> [cre]"   
-## [3] "Goddert von Oheimb <vonoheimb@uni.leuphana.de> [cre]"
+## [1] "Claas-Thido Pfaff <fake@test.com>"
 ```
   
 
 ```r
-eml_get(metadata, "coverage")
+eml_get(metadata, "unit.defs")
 ```
 
 ```
-## geographicCoverage:
-##   geographicDescription: "The experiment was set up in the northeast part of Jiangxi
-##     Province, P.R. China (N 29Â° 06.29 E 117Â° 55.28). \n"
-##   boundingCoordinates:
-##     westBoundingCoordinate: '117.89978'
-##     eastBoundingCoordinate: '118.148346'
-##     northBoundingCoordinate: '29.285201'
-##     southBoundingCoordinate: '29.101777'
-## temporalCoverage:
-##   rangeOfDates:
-##     beginDate:
-##       calendarDate: |2
+## $attribute
+##                    SAC                     AM 
+## "The Sacramento River"   "The American River" 
 ## 
-##         2009-08-26
-##     endDate:
-##       calendarDate: |2
+## $attribute
+##          king          ccho 
+## "King Salmon" "Coho Salmon" 
 ## 
-##         2010-09-26
-## taxonomicCoverage:
-##   taxonomicClassification:
-##     commonName: |2+
+## $attribute
+##                parr               smolt 
+##  "third life stage" "fourth life stage" 
 ## 
-##       tree species (Schima superba, Elaeoarpus decipiens, Castanea henryi, Quercus serrata)
+## $attribute
+## [1] "number"
+## 
+## $attribute
+## [1] "YYYY-MM-DD"
 ```
 
 ---
@@ -696,25 +816,31 @@ eml_get(metadata, "coverage")
 * Access the data based on metadata information
   
 
-
+```r
+example_dataset = eml_get(metadata, "data.frame")
+```
 
 ```
-example_dataset = eml_get(metadata, "data.set")
+## Error: invalid 'url' argument
+```
+
+```r
+as(example_dataset, "data.frame")
+```
+
+```
+## Error: object 'example_dataset' not found
 ```
 
 * Just display a subset of it here
 
 
 ```r
-example_dataset[1:4, 1:3]
+example_dataset
 ```
 
 ```
-##     plot_id             Spp Leaf_15N_recovery_g_T5
-## 1 pilot1C09 Castanea henryi              1.504e-05
-## 2 pilot1D10 Castanea henryi              8.604e-05
-## 3 pilot2C11 Castanea henryi              2.905e-05
-## 4 pilot2D01 Castanea henryi              8.923e-06
+## Error: object 'example_dataset' not found
 ```
 
 ---
@@ -722,11 +848,10 @@ example_dataset[1:4, 1:3]
 ## Wrap-up
 
 * The `EML` package
-  - Access to metadata 
-  - Access to data
-  - From any EML formatted source!
-  - Describe your own data with metadata
-  - Allows publication of citable data products
+  - Access to metadata/data
+  - Read information/data from any EML source
+  - Describe your own data
+  - Publication of citable data products
 
 * This was very brief intro:
   - Just visit GitHub for more!
@@ -749,6 +874,3 @@ example_dataset[1:4, 1:3]
   https://github.com/ropensci/EML
 
 <img src="assets/img/affiliations_gfoe_2014.png" style="width: 400px;", class="flushfooter flushcenter"/>
-
-
-

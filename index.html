@@ -133,7 +133,7 @@ is useful to you!<br>
 <li><p>But what about the rest/details?</p>
 
 <ul>
-<li>ct: Is numeric (Neasured, statistic, Method)</li>
+<li>ct: Is numeric (Measured, Statistics, Method)</li>
 <li>dates: Which date format? (YMD, YDM)</li>
 </ul></li>
 </ul>
@@ -147,7 +147,15 @@ is useful to you!<br>
     <h2>Why metadata matters?</h2>
   </hgroup>
   <article data-timings="">
-    <p></br> </p>
+    <p></br></p>
+
+<p>   </p>
+
+<ul>
+<li>You ask and get the answer:</li>
+</ul>
+
+<p>   </p>
 
 <blockquote>
 <p>He Claas</p>
@@ -163,6 +171,8 @@ dates: The date format is YMD</p>
 
 <p>-- <em>All the best Karl</em></p>
 </blockquote>
+
+<p>   </p>
 
 <ul>
 <li>With that information you can start use the data!</li>
@@ -181,8 +191,8 @@ dates: The date format is YMD</p>
 <li>We learn: 
 
 <ul>
-<li>Without metadata</li>
-<li>Data gets unusalbe and is lost</li>
+<li>Without proper metadata</li>
+<li>data unusalbe and lost</li>
 </ul></li>
 </ul>
 
@@ -222,14 +232,14 @@ dates: The date format is YMD</p>
     <h2>The package (About)</h2>
   </hgroup>
   <article data-timings="">
-    <p></br></p>
-
-<ul>
+    <ul>
 <li><p>Metadata tools</p>
 
 <ul>
-<li>Morpho (companion online)</li>
-<li>Metacat (companion online), Data-Up (Californian Libraries), BEF-Data (BEF-China)</li>
+<li>Morpho (DataOne, KNB)</li>
+<li>Metacat (DataOne, KNB)</li>
+<li>Data-Up (Californian Libraries)</li>
+<li>BEF-Data (BEF-China)</li>
 <li>EML for R (initial commit 24 Jun 2013)</li>
 </ul></li>
 <li><p>Motivation (R package for EML)</p>
@@ -280,19 +290,28 @@ dates: The date format is YMD</p>
     <h2>The package (Install)</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
+    <p>   </p>
+
+<ul>
 <li>Not yet available via CRAN</li>
-<li><p>Source code via GitHub</p>
+<li>Source code via GitHub
 
 <ul>
 <li><a href="https://github.com/ropensci/EML">https://github.com/ropensci/EML</a></li>
 </ul></li>
-<li><p>Devtools (Hadley Wickham)</p></li>
+</ul>
+
+<p>   </p>
+
+<ul>
+<li>Devtools (Hadley Wickham)</li>
 </ul>
 
 <pre><code>install.packages(&quot;devtools&quot;)
 library(&quot;devtools&quot;)
 </code></pre>
+
+<p>   </p>
 
 <ul>
 <li>Install from github</li>
@@ -315,17 +334,17 @@ library(&quot;EML&quot;)
   <article data-timings="">
     <pre><code>- eml
   - dataset
-    - creator
-    - contact
+    - creator (o)
+    - contact (o)
     - publisher
-    - title
+    - title (o)
     - pubDate
     - keywords
     - abstract
-    - intellectualRights
+    - intellectualRights (o)
     - methods
     - coverage
-    - dataTable
+    - dataTable (o)
       - physical
       - attributeList
   - additionalMetadata
@@ -342,17 +361,17 @@ library(&quot;EML&quot;)
   <article data-timings="">
     <pre><code>- eml
   - dataset
-    - creator
-    - contact
+    - creator (o)
+    - contact (o)
     - publisher
-    - title
+    - title (o)
     - pubDate
     - keywords
     - abstract
-    - intellectualRights
+    - intellectualRights (o)
     - methods
     - coverage
-    - dataTable: descr., cats., units
+    - dataTable: (x, descr., cats., units)
       - physical
       - attributeList
   - additionalMetadata
@@ -367,9 +386,7 @@ library(&quot;EML&quot;)
     <h2>Create metadata</h2>
   </hgroup>
   <article data-timings="">
-    <p>  </p>
-
-<ul>
+    <ul>
 <li>River site used for collection
 
 <ul>
@@ -396,6 +413,8 @@ library(&quot;EML&quot;)
 <li>dates: Format is Day, Month, Year</li>
 </ul></li>
 </ul>
+
+<p>  </p>
 
 <p><a href="assets/files/csv_file_from_email.csv" class="btn flushfooter"><i class="icon-envelope"></i> Attachment.csv</a></p>
 
@@ -427,8 +446,8 @@ library(&quot;EML&quot;)
 <pre><code class="r">unit_defs = list(c(SAC = &quot;The Sacramento River&quot;, AM = &quot;The American River&quot;),
                  c(king = &quot;King Salmon&quot;, ccho = &quot;Coho Salmon&quot;),
                  c(parr = &quot;third life stage&quot;, smolt = &quot;fourth life stage&quot;),
-                 unit = &quot;number&quot;,
-                 format = &quot;YYYY-MM-DD&quot;)
+                 c(unit = &quot;number&quot;),
+                 c(format = &quot;YYYY-MM-DD&quot;))
 </code></pre>
 
   </article>
@@ -437,11 +456,13 @@ library(&quot;EML&quot;)
 
 <slide class="" id="slide-12" style="background:;">
   <hgroup>
-    <h2>Glue together (data.set)</h2>
+    <h2>Assemble (data and metad.)</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
-<li>Put together with <code>data.set()</code></li>
+    <p></br></p>
+
+<ul>
+<li>Assemble everything with <code>data.set()</code></li>
 </ul>
 
 <pre><code class="r">described_dataset = data.set(undescribed_data,
@@ -449,16 +470,17 @@ library(&quot;EML&quot;)
                              unit.defs = unit_defs)
 </code></pre>
 
-<ul>
-<li>However there is still general information missing:
+<p>  </p>
 
 <ul>
-<li>title (add now)</li>
-<li>absract</li>
-<li>temporal and spatial coverage</li>
-<li>contact person (add now)</li>
-<li>creator</li>
-<li>and other things ...</li>
+<li>We have now! 
+
+<ul>
+<li>dataset + core descriptions</li>
+<li>covers:</li>
+<li>columns</li>
+<li>categories</li>
+<li>units</li>
 </ul></li>
 </ul>
 
@@ -475,7 +497,8 @@ library(&quot;EML&quot;)
 <li>Get the data </li>
 </ul>
 
-<pre><code>undescribed_data = read.csv(&quot;http://bit.ly/11Q4GOt&quot;)
+<pre><code class="r">undescribed_data = read.csv(&quot;http://bit.ly/11Q4GOt&quot;)
+undescribed_data$dates = as.Date(undescribed_data$dates)
 </code></pre>
 
 <ul>
@@ -489,10 +512,13 @@ library(&quot;EML&quot;)
 <ul>
 <li>Save to variable (e.g units)</li>
 <li>Use: unit = &quot;number&quot; (for the count)</li>
-<li>Use: format = &quot;YYYY-MM-DD&quot; (for thed date)</li>
-<li>Ensure that the date column is a date! (<code>as.Date(...)</code>)</li>
+<li>Use: format = &quot;YYYY-MM-DD&quot; (for the date)</li>
 </ul></li>
-<li><p>Put together (<code>data.set(data, col.defs = descriptions, unit.defs = units)</code>)</p></li>
+<li><p>Assemble (<code>data.set(data, col.defs = descriptions, unit.defs = units)</code>)</p>
+
+<ul>
+<li>save to variable (e.g data_with_core_metadata)</li>
+</ul></li>
 </ul>
 
 <p><a href="assets/files/task_add_core_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a></p>
@@ -508,14 +534,14 @@ library(&quot;EML&quot;)
   <article data-timings="">
     <pre><code>- eml
   - dataset
-    - creator 
-    - contact (x)
+    - creator (x)
+    - contact (o)
     - publisher
-    - title
+    - title (o)
     - pubDate
     - keywords
     - abstract
-    - intellectualRights
+    - intellectualRights (o)
     - methods
     - coverage
     - dataTable (done)
@@ -530,32 +556,32 @@ library(&quot;EML&quot;)
 
 <slide class="" id="slide-15" style="background:;">
   <hgroup>
-    <h2>Add contact (name, mail)</h2>
+    <h2>Objects (excursion)</h2>
   </hgroup>
   <article data-timings="">
     <ul>
-<li>Create person</li>
+<li>create an instance from an object</li>
 </ul>
 
-<pre><code class="r">claas = eml_person(&quot;Claas-Thido Pfaff &lt;fake@test.com&gt;&quot;)
+<pre><code>the_new_instance = new(&quot;contact&quot;)
 </code></pre>
 
 <ul>
-<li>What is it?</li>
+<li>show all variables (slotnames)</li>
 </ul>
 
-<pre><code class="r">class(claas)
+<pre><code class="r">getSlots(&quot;contact&quot;)
 </code></pre>
 
-<pre><code>## [1] &quot;contact&quot;
-## attr(,&quot;package&quot;)
-## [1] &quot;EML&quot;
+<pre><code>##        individualName      organizationName          positionName 
+##      &quot;individualName&quot;           &quot;character&quot;           &quot;character&quot; 
+##               address                 phone electronicMailAddress 
+##             &quot;address&quot;           &quot;character&quot;           &quot;character&quot; 
+##             onlineUrl                userID            references 
+##           &quot;character&quot;           &quot;character&quot;    &quot;ListOfreferences&quot;
 </code></pre>
 
-<pre><code class="r">typeof(claas)
-</code></pre>
-
-<pre><code>## [1] &quot;S4&quot;
+<pre><code>slotNames(&quot;contact&quot;)
 </code></pre>
 
   </article>
@@ -568,14 +594,15 @@ library(&quot;EML&quot;)
   </hgroup>
   <article data-timings="">
     <ul>
-<li>create an instance from an object</li>
-</ul>
-
-<pre><code>the_new_instance = new(&quot;object name&quot;)
-</code></pre>
+<li><p>Slots can contain var. data types:</p>
 
 <ul>
-<li>Subsetting (not $ but @)</li>
+<li>character</li>
+<li>numeric </li>
+<li>lists</li>
+<li>other objects</li>
+</ul></li>
+<li><p>Subsetting (not $ but @)</p></li>
 </ul>
 
 <pre><code>the_new_instance@slotname
@@ -588,31 +615,26 @@ library(&quot;EML&quot;)
 <pre><code>as(&quot;22&quot;, &quot;numeric&quot;)
 </code></pre>
 
-<ul>
-<li>Show all slotnames</li>
-</ul>
-
-<pre><code>slotNames(the_new_instance)
-</code></pre>
-
-<ul>
-<li>Slots can contain
-
-<ul>
-<li>All sorts of variable types (text, numeric, lists, oter objects...)</li>
-</ul></li>
-</ul>
-
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="" id="slide-17" style="background:;">
   <hgroup>
-    <h2>Add contact (inspect)</h2>
+    <h2>Add creator (name, mail)</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">slotNames(claas)
+    <pre><code class="r">claas = eml_person(&quot;Claas-Thido Pfaff &lt;fake@test.com&gt;&quot;)
+</code></pre>
+
+<pre><code>new(&quot;contact&quot;, 
+  individualName = new(&quot;individualName&quot;, 
+                        givenName = &quot;Claas-Thido Pfaff&quot;, 
+                        surName = &quot;Pfaff&quot;), 
+  electronicMailAddress = &quot;fake@test.com&quot;)
+</code></pre>
+
+<pre><code class="r">slotNames(claas)
 </code></pre>
 
 <pre><code>## [1] &quot;individualName&quot;        &quot;organizationName&quot;      &quot;positionName&quot;         
@@ -620,10 +642,27 @@ library(&quot;EML&quot;)
 ## [7] &quot;onlineUrl&quot;             &quot;userID&quot;                &quot;references&quot;
 </code></pre>
 
-<pre><code class="r">claas@individualName@givenName
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Add creator</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">claas@individualName
 </code></pre>
 
-<pre><code>## [1] &quot;Claas-Thido&quot;
+<pre><code>## An object of class &quot;individualName&quot;
+## Slot &quot;salutation&quot;:
+## character(0)
+## 
+## Slot &quot;givenName&quot;:
+## [1] &quot;Claas-Thido&quot;
+## 
+## Slot &quot;surName&quot;:
+## [1] &quot;Pfaff&quot;
 </code></pre>
 
 <pre><code class="r">claas@individualName@surName
@@ -636,35 +675,26 @@ library(&quot;EML&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-18" style="background:;">
+<slide class="" id="slide-19" style="background:;">
   <hgroup>
-    <h2>Add contact (address)</h2>
+    <h2>Add creator (address)</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
-<li>Create the address
-
-<ul>
-<li>create (new)</li>
-</ul></li>
-</ul>
-
-<pre><code class="r">address = new(&quot;address&quot;,
-               deliveryPoint = &quot;Universität Leipzig, Johannisallee 21&quot;,
-               city = &quot;Leipzig&quot;,
-               postalCode = &quot;04103&quot;,
-               country = &quot;GER&quot;)
+    <pre><code class="r">getSlots(&quot;address&quot;)
 </code></pre>
 
-<p></br></p>
+<pre><code>##      deliveryPoint               city administrativeArea 
+##        &quot;character&quot;        &quot;character&quot;        &quot;character&quot; 
+##         postalCode            country         references 
+##        &quot;character&quot;        &quot;character&quot; &quot;ListOfreferences&quot;
+</code></pre>
 
-<ul>
-<li>Assign to my &quot;address&quot; slot
-
-<ul>
-<li>Subset (@)</li>
-</ul></li>
-</ul>
+<pre><code class="r">address = new(&quot;address&quot;,
+              deliveryPoint = &quot;Universität Leipzig, Johannisallee 21&quot;,
+              city          = &quot;Leipzig&quot;,
+              postalCode    = &quot;04103&quot;,
+              country       = &quot;GER&quot;)
+</code></pre>
 
 <pre><code class="r">claas@address = address
 </code></pre>
@@ -673,21 +703,93 @@ library(&quot;EML&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-19" style="background:#EEE;">
+<slide class="" id="slide-20" style="background:;">
   <hgroup>
-    <h2>Your turn (add creator)</h2>
+    <h2>Add creator (inspect)</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">- eml
+    <ul>
+<li>Which class it that person object of?</li>
+</ul>
+
+<pre><code class="r">class(claas)
+</code></pre>
+
+<pre><code>## [1] &quot;contact&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;EML&quot;
+</code></pre>
+
+<p>   </p>
+
+<ul>
+<li>It is a contact not a creator!
+
+<ul>
+<li>Coerce it</li>
+</ul></li>
+</ul>
+
+<pre><code class="r">claas_creator = as(claas, &quot;creator&quot;)
+</code></pre>
+
+<p>   </p>
+
+<ul>
+<li>Why is this important?</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>It is important because!</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Class names and slot names
+
+<ul>
+<li>get fields in the EML!</li>
+</ul></li>
+</ul>
+
+<pre><code>&lt;creator&gt;
+  &lt;individualName&gt;
+    &lt;givenName&gt;Claas-Thido&lt;/givenName&gt;
+    &lt;surName&gt;Pfaff&lt;/surName&gt;
+  &lt;/individualName&gt;
+  &lt;address&gt;
+    &lt;deliveryPoint&gt;Universität Leipzig, Johannisallee 21&lt;/deliveryPoint&gt;
+    &lt;city&gt;Leipzig&lt;/city&gt;
+    &lt;postalCode&gt;04103&lt;/postalCode&gt;
+    &lt;country&gt;GER&lt;/country&gt;
+  &lt;/address&gt;
+  &lt;electronicMailAddress&gt;fake@test.com&lt;/electronicMailAddress&gt;
+&lt;/creator&gt;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:#EEE;">
+  <hgroup>
+    <h2>Your turn (add contact)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code>- eml
   - dataset
-    - creator (x)
-    - contact (done)
+    - creator (done)
+    - contact (x)
     - publisher
-    - title 
+    - title (o)
     - pubDate
     - keywords
     - abstract
-    - intellectualRights 
+    - intellectualRights (o)
     - methods
     - coverage
     - dataTable (done)
@@ -700,56 +802,104 @@ library(&quot;EML&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-20" style="background:#EEE;">
+<slide class="" id="slide-23" style="background:#EEE;">
   <hgroup>
-    <h2>Your turn (add creator)</h2>
+    <h2>Your turn (add contact)</h2>
   </hgroup>
   <article data-timings="">
     <p></br></p>
 
 <ul>
-<li>Create a creator
+<li>Add a contact
 
 <ul>
-<li>Use <code>you &lt;- eml_person(&quot;Your Name &lt;yourmail@provider.com&gt;&quot;)</code></li>
+<li>Use <code>you = eml_person(&quot;Your Name &lt;yourmail@provider.com&gt;&quot;)</code></li>
 </ul></li>
 <li>Add an address 
 
 <ul>
-<li>address = new(&quot;address&quot;, deliveryPoint = &quot;....&quot;)</li>
+<li><code>address = new(&quot;address&quot;, deliveryPoint = &quot;....&quot;)</code></li>
 <li>also add: city, postalCode, country</li>
+<li>hint: <code>slotNames(&quot;address&quot;)</code></li>
 </ul></li>
-<li>Do not forget to assign the address to your creator!
+<li>Do not forget to assign the address to your contact!
 
 <ul>
 <li><code>you@address = address</code></li>
 </ul></li>
-<li>Coerce the contact to a creator (save e.g. in <code>you_creator</code>)
-
-<ul>
-<li><code>as(you, &quot;creator&quot;)</code></li>
-</ul></li>
 </ul>
+
+<p><a href="assets/files/task_add_contact_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-21" style="background:;">
+<slide class="" id="slide-24" style="background:#EEE;">
   <hgroup>
-    <h2>Show the the right way</h2>
+    <h2>Your turn (add contact 1)</h2>
   </hgroup>
   <article data-timings="">
     <ul>
-<li>also allow to download the solution from 
-here on then</li>
+<li>Convenient 
+
+<ul>
+<li>with <code>eml_person()</code></li>
+<li>Create address</li>
+<li>Assign address</li>
+</ul></li>
 </ul>
+
+<p>   </p>
+
+<pre><code class="r">myname = eml_person(&quot;J. Steidle &lt;steidle@fake.com&gt;&quot;)
+myaddress = new(&quot;address&quot;,
+              deliveryPoint = &quot;University Hohenheim, Schloss Hohenheim 1&quot;,
+              city          = &quot;Stuttgart&quot;,
+              postalCode    = &quot;70599&quot;,
+              country       = &quot;GER&quot;)
+myname@address = myaddress
+</code></pre>
+
+<p><a href="assets/files/task_add_contact_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-22" style="background:;">
+<slide class="" id="slide-25" style="background:#EEE;">
+  <hgroup>
+    <h2>Your turn (add contact 2)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>More verbose
+
+<ul>
+<li>More basic (no wrapper function)</li>
+<li>Everything in one block</li>
+</ul></li>
+</ul>
+
+<pre><code>new(&quot;contact&quot;, individualName = new(&quot;individualName&quot;, 
+                                                    givenName = &quot;Claas-Thido Pfaff&quot;, 
+                                                    surName = &quot;Pfaff&quot;), 
+               electronicMailAddress = &quot;claas-thido.pfaff@uni-leipzig.de&quot;,
+               phone = &quot;+49-341-97-38587&quot;,
+               address = new(&quot;address&quot;,
+                                      deliveryPoint = &quot;Universität Leipzig, Johannisallee 21&quot;,
+                                      city = &quot;Leipzig&quot;,
+                                      postalCode = &quot;04103&quot;,
+                                      country = &quot;GER&quot;)
+</code></pre>
+
+<p><a href="assets/files/task_add_contact_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
   <hgroup>
     <h2>Typical metadata (add more &quot;x&quot;)</h2>
   </hgroup>
@@ -776,29 +926,20 @@ here on then</li>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-23" style="background:;">
-  <hgroup>
-    <h2>Add other</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>*</p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-24" style="background:;">
+<slide class="" id="slide-27" style="background:;">
   <hgroup>
     <h2>Put all together</h2>
   </hgroup>
   <article data-timings="">
     <ul>
-<li>The <code>eml()</code> command assembles everything</li>
+<li>The <code>eml()</code> command assembles</li>
 </ul>
 
 <pre><code class="r">data &lt;- eml(dat = described_dataset,
-            title = &quot;This is an example title&quot;,
-            contact = claas_contact
+            title = &quot;Count of life fish in traps&quot;,
+            contact = claas,
+            creator = claas_creator,
+            intellectualRights = &quot;CC0, Creative commons zero&quot;
             )
 </code></pre>
 
@@ -806,76 +947,113 @@ here on then</li>
 <li>Write out the EML to a file</li>
 </ul>
 
-<pre><code class="r">eml_write(data, file=&quot;mymetadata.eml&quot;)
+<pre><code class="r">eml_write(data, file=&quot;mymetadata.xml&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;mymetadata.xml&quot;
 </code></pre>
 
 <ul>
+<li>More often you use <code>.eml</code></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:;">
+  <hgroup>
+    <h2>Publish (curr. figshare, knb)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
 <li>Publish to figshare (requires <code>rfigshare</code> package)</li>
 </ul>
 
-<pre><code class="r">eml_publish(&quot;mymetadata.eml&quot;, 
+<pre><code class="r">eml_publish(&quot;mymetadata.xml&quot;, 
             description=&quot;Example EML file from EML&quot;,
             categories = &quot;Ecology&quot;, 
             tags = &quot;EML&quot;, 
             destination=&quot;figshare&quot;)
 </code></pre>
 
-  </article>
-  <!-- Presenter Notes -->
-</slide>
+<pre><code class="r">Your article has been created! Your id number is 1256252
+[1] 1256252
+</code></pre>
 
-<slide class="" id="slide-25" style="background:;">
-  <hgroup>
-    <h2>Uploaded to FigShare</h2>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="assets/img/uploaded_csv_and_metadata_two_figshare.png" style="width: 800px;"/></p>
+<ul>
+<li>Requires
 
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-26" style="background:;">
-  <hgroup>
-    <h2>Uploaded to FigShare</h2>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>Metadata</li>
+<ul>
+<li>R-Package (<code>rfigshare</code>)</li>
+<li>Figshare account (<a href="http://figshare.com">http://figshare.com</a>)</li>
+</ul></li>
 </ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:;">
+  <hgroup>
+    <h2>Publish (curr. figshare, knb)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/uploaded_csv_and_metadata_one.png" style="width: 800px;"/></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-30" style="background:;">
+  <hgroup>
+    <h2>Publish (curr. figshare, knb)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/uploaded_csv_and_metadata_two_figshare_csv_shown.png" style="width: 800px;"/></p>
 
 <p><img src="assets/img/uploaded_csv_and_metadata_two_xml_shown.png" style="width: 800px;"/></p>
 
-<ul>
-<li>Data</li>
-</ul>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
 
-<p><img src="assets/img/uploaded_csv_and_metadata_two_figshare_csv_shown.png" style="width: 800px;"/></p>
-
-<h2>Idea collection practice</h2>
-
-<p>Read data and metadata:</p>
-
-<ul>
-<li>Import a dataset</li>
-<li>Extract contact person</li>
-<li>Extract a column description</li>
-</ul>
-
-<p>Write data and metadata:</p>
+<slide class="" id="slide-31" style="background:#EEE;">
+  <hgroup>
+    <h2>Your turn (asselbe/write out)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Assemble </p>
 
 <ul>
-<li>Download an example dataset</li>
-<li>Add the core metadata (units: dictionary, dates, descriptions, classes)</li>
-<li>Show the most common metadata fields </li>
-<li>Let them create and add (creator, contact, title, intellectual rights)</li>
+<li>The dataset + core metadata (you created)</li>
+<li>the contact (you created)</li>
+</ul></li>
+<li><p>Add a title and usage rights</p></li>
 </ul>
+
+<p><code>title = &quot;Count of life fish in traps of the sacramento and american river&quot;</code></p>
+
+<p><code>license = &quot;CC0, http://creativecommons.org/publicdomain/zero/1.0&quot;</code></p>
+
+<ul>
+<li><p>Hint:
+<code>final = eml(dat = ..., title =, contact = ...)</code></p></li>
+<li><p>Write out the metadata and data</p>
+
+<ul>
+<li>Hint: eml_write(final, file = &quot;xy.xml&quot;)</li>
+</ul></li>
+</ul>
+
+<p><a href="assets/files/task_write_out_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-27" style="background:;">
+<slide class="" id="slide-32" style="background:;">
   <hgroup>
     <h2>Read metadata</h2>
   </hgroup>
@@ -884,14 +1062,15 @@ here on then</li>
 <li>Read metadata from any EML formated source (File, URL, KNB-ID)</li>
 </ul>
 
-<pre><code class="r">metadata &lt;- eml_read(&quot;http://china.befdata.biow.uni-leipzig.de/datasets/334.eml&quot;)
+<pre><code class="r">metadata &lt;- eml_read(&quot;mymetadata.xml&quot;)
 </code></pre>
+
+<p>   </p>
 
 <ul>
 <li>Then use <code>eml_get(metadata, &quot;xy&quot;)</code>
 
 <ul>
-<li>csv_filepaths</li>
 <li>coverage</li>
 <li>contact</li>
 <li>unit.defs</li>
@@ -905,52 +1084,44 @@ here on then</li>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-28" style="background:;">
+<slide class="" id="slide-33" style="background:;">
   <hgroup>
     <h2>Read metadata</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">eml_get(metadata, &quot;creator&quot;)
+    <pre><code class="r">eml_get(metadata, &quot;contact&quot;)
 </code></pre>
 
-<pre><code>## [1] &quot;Anne Lang &lt;anne_christina.lang@uni-leipzig.de&gt; [cre]&quot;
-## [2] &quot;Werner HÃ¤rdtle &lt;haerdtle@uni-lueneburg.de&gt; [cre]&quot;   
-## [3] &quot;Goddert von Oheimb &lt;vonoheimb@uni.leuphana.de&gt; [cre]&quot;
+<pre><code>## [1] &quot;Claas-Thido Pfaff &lt;fake@test.com&gt;&quot;
 </code></pre>
 
-<pre><code class="r">eml_get(metadata, &quot;coverage&quot;)
+<pre><code class="r">eml_get(metadata, &quot;unit.defs&quot;)
 </code></pre>
 
-<pre><code>## geographicCoverage:
-##   geographicDescription: &quot;The experiment was set up in the northeast part of Jiangxi
-##     Province, P.R. China (N 29Â° 06.29 E 117Â° 55.28). \n&quot;
-##   boundingCoordinates:
-##     westBoundingCoordinate: &#39;117.89978&#39;
-##     eastBoundingCoordinate: &#39;118.148346&#39;
-##     northBoundingCoordinate: &#39;29.285201&#39;
-##     southBoundingCoordinate: &#39;29.101777&#39;
-## temporalCoverage:
-##   rangeOfDates:
-##     beginDate:
-##       calendarDate: |2
+<pre><code>## $attribute
+##                    SAC                     AM 
+## &quot;The Sacramento River&quot;   &quot;The American River&quot; 
 ## 
-##         2009-08-26
-##     endDate:
-##       calendarDate: |2
+## $attribute
+##          king          ccho 
+## &quot;King Salmon&quot; &quot;Coho Salmon&quot; 
 ## 
-##         2010-09-26
-## taxonomicCoverage:
-##   taxonomicClassification:
-##     commonName: |2+
+## $attribute
+##                parr               smolt 
+##  &quot;third life stage&quot; &quot;fourth life stage&quot; 
 ## 
-##       tree species (Schima superba, Elaeoarpus decipiens, Castanea henryi, Quercus serrata)
+## $attribute
+## [1] &quot;number&quot;
+## 
+## $attribute
+## [1] &quot;YYYY-MM-DD&quot;
 </code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-29" style="background:;">
+<slide class="" id="slide-34" style="background:;">
   <hgroup>
     <h2>Import data</h2>
   </hgroup>
@@ -959,28 +1130,33 @@ here on then</li>
 <li>Access the data based on metadata information</li>
 </ul>
 
-<pre><code>example_dataset = eml_get(metadata, &quot;data.set&quot;)
+<pre><code class="r">example_dataset = eml_get(metadata, &quot;data.frame&quot;)
+</code></pre>
+
+<pre><code>## Error: invalid &#39;url&#39; argument
+</code></pre>
+
+<pre><code class="r">as(example_dataset, &quot;data.frame&quot;)
+</code></pre>
+
+<pre><code>## Error: object &#39;example_dataset&#39; not found
 </code></pre>
 
 <ul>
 <li>Just display a subset of it here</li>
 </ul>
 
-<pre><code class="r">example_dataset[1:4, 1:3]
+<pre><code class="r">example_dataset
 </code></pre>
 
-<pre><code>##     plot_id             Spp Leaf_15N_recovery_g_T5
-## 1 pilot1C09 Castanea henryi              1.504e-05
-## 2 pilot1D10 Castanea henryi              8.604e-05
-## 3 pilot2C11 Castanea henryi              2.905e-05
-## 4 pilot2D01 Castanea henryi              8.923e-06
+<pre><code>## Error: object &#39;example_dataset&#39; not found
 </code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-30" style="background:;">
+<slide class="" id="slide-35" style="background:;">
   <hgroup>
     <h2>Wrap-up</h2>
   </hgroup>
@@ -989,11 +1165,10 @@ here on then</li>
 <li><p>The <code>EML</code> package</p>
 
 <ul>
-<li>Access to metadata </li>
-<li>Access to data</li>
-<li>From any EML formatted source!</li>
-<li>Describe your own data with metadata</li>
-<li>Allows publication of citable data products</li>
+<li>Access to metadata/data</li>
+<li>Read information/data from any EML source</li>
+<li>Describe your own data</li>
+<li>Publication of citable data products</li>
 </ul></li>
 <li><p>This was very brief intro:</p>
 
@@ -1007,7 +1182,7 @@ here on then</li>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-31" style="background:;">
+<slide class="" id="slide-36" style="background:;">
   <article data-timings="">
     <div class = "flushcenter">
   <h1>Thanks for your attention!</h1>
@@ -1105,7 +1280,7 @@ here on then</li>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='Glue together (data.set)'>
+        data-slide=12 title='Assemble (data and metad.)'>
          12
       </a>
     </li>
@@ -1123,7 +1298,7 @@ here on then</li>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='Add contact (name, mail)'>
+        data-slide=15 title='Objects (excursion)'>
          15
       </a>
     </li>
@@ -1135,92 +1310,122 @@ here on then</li>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='Add contact (inspect)'>
+        data-slide=17 title='Add creator (name, mail)'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='Add contact (address)'>
+        data-slide=18 title='Add creator'>
          18
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='Your turn (add creator)'>
+        data-slide=19 title='Add creator (address)'>
          19
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='Your turn (add creator)'>
+        data-slide=20 title='Add creator (inspect)'>
          20
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Show the the right way'>
+        data-slide=21 title='It is important because!'>
          21
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='Typical metadata (add more &quot;x&quot;)'>
+        data-slide=22 title='Your turn (add contact)'>
          22
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Add other'>
+        data-slide=23 title='Your turn (add contact)'>
          23
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='Put all together'>
+        data-slide=24 title='Your turn (add contact 1)'>
          24
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='Uploaded to FigShare'>
+        data-slide=25 title='Your turn (add contact 2)'>
          25
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=26 title='Uploaded to FigShare'>
+        data-slide=26 title='Typical metadata (add more &quot;x&quot;)'>
          26
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title='Read metadata'>
+        data-slide=27 title='Put all together'>
          27
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title='Read metadata'>
+        data-slide=28 title='Publish (curr. figshare, knb)'>
          28
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=29 title='Import data'>
+        data-slide=29 title='Publish (curr. figshare, knb)'>
          29
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=30 title='Wrap-up'>
+        data-slide=30 title='Publish (curr. figshare, knb)'>
          30
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=31 title=''>
+        data-slide=31 title='Your turn (asselbe/write out)'>
          31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Read metadata'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Read metadata'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Import data'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Wrap-up'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title=''>
+         36
       </a>
     </li>
   </ul>

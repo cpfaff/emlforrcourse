@@ -29,7 +29,6 @@ require("knitr")
   + Only find publications (no datasets)
   + You ask the authors and your network
 
-
 <p>   </p>
 
 > He Claas
@@ -44,7 +43,7 @@ require("knitr")
 
 ---
 
-## Why metadata matters? 
+## Why metadata matters?
 
 ```{r nometadata, include = F}
 river = c("SAC",  "SAC",   "AM")
@@ -69,14 +68,20 @@ kable(undescribed_data)
   - stg: The life stage of fish
 
 * But what about the rest/details?
-  - ct: Is numeric (Neasured, statistic, Method)
+  - ct: Is numeric (Measured, Statistics, Method)
   - dates: Which date format? (YMD, YDM)
 
 ---
 
 ## Why metadata matters?
 
-</br> 
+</br>
+
+<p>   </p>
+
+* You ask and get the answer:
+
+<p>   </p>
 
 > He Claas
 > 
@@ -91,6 +96,8 @@ kable(undescribed_data)
 >  
 > -- *All the best Karl*
 
+<p>   </p>
+
 * With that information you can start use the data!
 
 ---
@@ -98,9 +105,9 @@ kable(undescribed_data)
 ## Why metadata matters?
 
 * We learn: 
-  - Without metadata
-  - Data gets unusalbe and is lost
-  
+  - Without proper metadata
+  - data unusalbe and lost
+
 <p>   </p>
 
 * Metadata standards (DwC, EML)
@@ -125,11 +132,11 @@ kable(undescribed_data)
 
 ## The package (About)
 
-</br>
-
 * Metadata tools
-  - Morpho (companion online)
-  - Metacat (companion online), Data-Up (Californian Libraries), BEF-Data (BEF-China)
+  - Morpho (DataOne, KNB)
+  - Metacat (DataOne, KNB)
+  - Data-Up (Californian Libraries)
+  - BEF-Data (BEF-China)
   - EML for R (initial commit 24 Jun 2013)
 
 * Motivation (R package for EML)
@@ -162,16 +169,22 @@ kable(undescribed_data)
 
 ## The package (Install)
 
+<p>   </p>
+
 * Not yet available via CRAN
 * Source code via GitHub
   * https://github.com/ropensci/EML
-  
+
+<p>   </p>
+
 * Devtools (Hadley Wickham)
   
 ```
 install.packages("devtools")
 library("devtools")
 ```
+
+<p>   </p>
 
 * Install from github
 
@@ -189,17 +202,17 @@ library("EML")
 ```
 - eml
   - dataset
-    - creator
-    - contact
+    - creator (o)
+    - contact (o)
     - publisher
-    - title
+    - title (o)
     - pubDate
     - keywords
     - abstract
-    - intellectualRights
+    - intellectualRights (o)
     - methods
     - coverage
-    - dataTable
+    - dataTable (o)
       - physical
       - attributeList
   - additionalMetadata
@@ -212,17 +225,17 @@ library("EML")
 ```
 - eml
   - dataset
-    - creator
-    - contact
+    - creator (o)
+    - contact (o)
     - publisher
-    - title
+    - title (o)
     - pubDate
     - keywords
     - abstract
-    - intellectualRights
+    - intellectualRights (o)
     - methods
     - coverage
-    - dataTable: descr., cats., units
+    - dataTable: (x, descr., cats., units)
       - physical
       - attributeList
   - additionalMetadata
@@ -231,8 +244,6 @@ library("EML")
 ---
 
 ## Create metadata
-
-<p>  </p>
 
 * River site used for collection
   - river: sac = The sacramento river, am = The american river  
@@ -244,6 +255,8 @@ library("EML")
   - ct: numeric  
 * The date of data collection: 
   - dates: Format is Day, Month, Year
+
+<p>  </p>
 
 <a href="assets/files/csv_file_from_email.csv" class="btn flushfooter"><i class="icon-envelope"></i> Attachment.csv</a>
 
@@ -269,15 +282,17 @@ col_defs = c("River site used for collection",
 unit_defs = list(c(SAC = "The Sacramento River", AM = "The American River"),
                  c(king = "King Salmon", ccho = "Coho Salmon"),
                  c(parr = "third life stage", smolt = "fourth life stage"),
-                 unit = "number",
-                 format = "YYYY-MM-DD")
+                 c(unit = "number"),
+                 c(format = "YYYY-MM-DD"))
 ```
 
 ---
 
-## Glue together (data.set)
+## Assemble (data and metad.)
 
-* Put together with `data.set()`
+</br>
+
+* Assemble everything with `data.set()`
 
 ```{r put_together}
 described_dataset = data.set(undescribed_data,
@@ -285,13 +300,14 @@ described_dataset = data.set(undescribed_data,
                              unit.defs = unit_defs)
 ```
 
-* However there is still general information missing:
-  - title (add now)
-  - absract
-  - temporal and spatial coverage
-  - contact person (add now)
-  - creator
-  - and other things ...
+<p>  </p>
+
+* We have now! 
+  - dataset + core descriptions
+  - covers:
+  - columns
+  - categories
+  - units
 
 --- bg:#EEE
 
@@ -299,8 +315,9 @@ described_dataset = data.set(undescribed_data,
 
 * Get the data 
 
-```
+```{r your_turn_core_metadata, eval = F}
 undescribed_data = read.csv("http://bit.ly/11Q4GOt")
+undescribed_data$dates = as.Date(undescribed_data$dates)
 ```
 
 * Create the colum definitions (character vector)
@@ -309,10 +326,10 @@ undescribed_data = read.csv("http://bit.ly/11Q4GOt")
 * Create unit definitions (list)
   - Save to variable (e.g units)
   - Use: unit = "number" (for the count)
-  - Use: format = "YYYY-MM-DD" (for thed date)
-  - Ensure that the date column is a date! (`as.Date(...)`)
-
-* Put together (`data.set(data, col.defs = descriptions, unit.defs = units)`)
+  - Use: format = "YYYY-MM-DD" (for the date)
+ 
+* Assemble (`data.set(data, col.defs = descriptions, unit.defs = units)`)
+  - save to variable (e.g data_with_core_metadata)
 
 <a href="assets/files/task_add_core_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
 
@@ -323,14 +340,14 @@ undescribed_data = read.csv("http://bit.ly/11Q4GOt")
 ```
 - eml
   - dataset
-    - creator 
-    - contact (x)
+    - creator (x)
+    - contact (o)
     - publisher
-    - title
+    - title (o)
     - pubDate
     - keywords
     - abstract
-    - intellectualRights
+    - intellectualRights (o)
     - methods
     - coverage
     - dataTable (done)
@@ -341,30 +358,33 @@ undescribed_data = read.csv("http://bit.ly/11Q4GOt")
 
 ---
 
-## Add contact (name, mail)
+## Objects (excursion)
 
-* Create person
+* create an instance from an object
 
-```{r create_person}
-claas = eml_person("Claas-Thido Pfaff <fake@test.com>")
+```
+the_new_instance = new("contact")
 ```
 
-* What is it?
+* show all variables (slotnames)
 
-```{r check_person}
-class(claas)
-typeof(claas)
+```{r get_slots_of_contact}
+getSlots("contact")
+```
+
+```
+slotNames("contact")
 ```
 
 ---
 
 ## Objects (excursion)
 
-* create an instance from an object
-
-```
-the_new_instance = new("object name")
-```
+* Slots can contain var. data types:
+  - character
+  - numeric 
+  - lists
+  - other objects
 
 * Subsetting (not $ but @)
 
@@ -378,70 +398,123 @@ the_new_instance@slotname
 as("22", "numeric")
 ```
 
-* Show all slotnames
-
-```
-slotNames(the_new_instance)
-```
-
-* Slots can contain
-  - All sorts of variable types (text, numeric, lists, oter objects...)
-
 ---
 
-## Add contact (inspect)
+## Add creator (name, mail)
+
+```{r create_person}
+claas = eml_person("Claas-Thido Pfaff <fake@test.com>")
+```
+
+```
+new("contact", 
+  individualName = new("individualName", 
+                        givenName = "Claas-Thido Pfaff", 
+                        surName = "Pfaff"), 
+  electronicMailAddress = "fake@test.com")
+```
 
 ```{r check_slotnames}
 slotNames(claas)
 ```
 
+---
+
+## Add creator
+
 ```{r check_individual_name}
-claas@individualName@givenName
+claas@individualName
 ```
 
-```{r check_individual_name_two}
+```{r check_individual_name_surName}
 claas@individualName@surName
 ```
 
 ---
 
-## Add contact (address)
+## Add creator (address)
 
-* Create the address
-  - create (new)
+```{r inspect_address}
+getSlots("address")
+```
 
 ```{r add_address}
 address = new("address",
-               deliveryPoint = "Universität Leipzig, Johannisallee 21",
-               city = "Leipzig",
-               postalCode = "04103",
-               country = "GER")
+              deliveryPoint = "Universität Leipzig, Johannisallee 21",
+              city          = "Leipzig",
+              postalCode    = "04103",
+              country       = "GER")
 ```
-
-</br>
-
-* Assign to my "address" slot
-  - Subset (@)
 
 ```{r assign_address}
 claas@address = address
 ```
 
+---
+
+## Add creator (inspect)
+
+* Which class it that person object of?
+
+```{r check_person}
+class(claas)
+```
+
+<p>   </p>
+
+* It is a contact not a creator!
+  - Coerce it
+
+```{r coerce_to_creator}
+claas_creator = as(claas, "creator")
+```
+
+```{r assign_address_to_claas_as_well, include=F, eval=TRUE}
+claas_creator@address = address
+```
+
+<p>   </p>
+
+* Why is this important?
+
+---
+
+## It is important because!
+
+* Class names and slot names
+  - get fields in the EML!
+
+```
+<creator>
+  <individualName>
+    <givenName>Claas-Thido</givenName>
+    <surName>Pfaff</surName>
+  </individualName>
+  <address>
+    <deliveryPoint>Universität Leipzig, Johannisallee 21</deliveryPoint>
+    <city>Leipzig</city>
+    <postalCode>04103</postalCode>
+    <country>GER</country>
+  </address>
+  <electronicMailAddress>fake@test.com</electronicMailAddress>
+</creator>
+```
+
 --- bg:#EEE
 
-## Your turn (add creator)
+## Your turn (add contact)
 
-```{r eval=FALSE}
+```
 - eml
   - dataset
-    - creator (x)
-    - contact (done)
+    - creator (done)
+    - contact (x)
     - publisher
-    - title 
+    - title (o)
     - pubDate
     - keywords
     - abstract
-    - intellectualRights 
+    - intellectualRights (o)
     - methods
     - coverage
     - dataTable (done)
@@ -452,26 +525,66 @@ claas@address = address
 
 --- bg:#EEE
 
-## Your turn (add creator)
+## Your turn (add contact)
 
 </br>
 
-* Create a creator
-  - Use `you <- eml_person("Your Name <yourmail@provider.com>")`
+* Add a contact
+  - Use `you = eml_person("Your Name <yourmail@provider.com>")`
 * Add an address 
-  - address = new("address", deliveryPoint = "....")
+  - `address = new("address", deliveryPoint = "....")`
   - also add: city, postalCode, country
-* Do not forget to assign the address to your creator!
+  - hint: `slotNames("address")`
+* Do not forget to assign the address to your contact!
   - `you@address = address`
-* Coerce the contact to a creator (save e.g. in `you_creator`)
-  - `as(you, "creator")`
 
----
+<a href="assets/files/task_add_contact_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
 
-## Show the the right way
+--- bg:#EEE
 
-* also allow to download the solution from 
-  here on then
+## Your turn (add contact 1)
+
+* Convenient 
+  - with `eml_person()`
+  - Create address
+  - Assign address
+
+<p>   </p>
+
+```{r name, eval=F}
+myname = eml_person("J. Steidle <steidle@fake.com>")
+myaddress = new("address",
+              deliveryPoint = "University Hohenheim, Schloss Hohenheim 1",
+              city          = "Stuttgart",
+              postalCode    = "70599",
+              country       = "GER")
+myname@address = myaddress
+```
+
+<a href="assets/files/task_add_contact_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
+
+--- bg:#EEE
+
+## Your turn (add contact 2)
+
+* More verbose
+  - More basic (no wrapper function)
+  - Everything in one block
+
+```
+new("contact", individualName = new("individualName", 
+                                                    givenName = "Claas-Thido Pfaff", 
+                                                    surName = "Pfaff"), 
+               electronicMailAddress = "claas-thido.pfaff@uni-leipzig.de",
+               phone = "+49-341-97-38587",
+               address = new("address",
+                                      deliveryPoint = "Universität Leipzig, Johannisallee 21",
+                                      city = "Leipzig",
+                                      postalCode = "04103",
+                                      country = "GER")
+```
+
+<a href="assets/files/task_add_contact_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
 
 ---
 
@@ -498,95 +611,85 @@ claas@address = address
 
 ---
 
-## Add other 
-
-*
-
----
-
 ## Put all together
 
-* The `eml()` command assembles everything
+* The `eml()` command assembles
 
-```{r assemble_eml, eval = F}
+```{r assemble_eml, eval = T}
 data <- eml(dat = described_dataset,
-            title = "This is an example title",
-            contact = claas_contact
+            title = "Count of life fish in traps",
+            contact = claas,
+            creator = claas_creator,
+            intellectualRights = "CC0, Creative commons zero"
             )
 ```
 
 * Write out the EML to a file
 
-```{r eval=FALSE}
-eml_write(data, file="mymetadata.eml")
+```{r eval=T}
+eml_write(data, file="mymetadata.xml")
 ```
+
+* More often you use `.eml`
+
+---
+
+## Publish (curr. figshare, knb)
 
 * Publish to figshare (requires `rfigshare` package)
 
 ```{r eval = F}
-eml_publish("mymetadata.eml", 
+eml_publish("mymetadata.xml", 
             description="Example EML file from EML",
             categories = "Ecology", 
             tags = "EML", 
             destination="figshare")
 ```
 
+```{r eval=FALSE}
+Your article has been created! Your id number is 1256252
+[1] 1256252
+```
+
+* Requires
+  - R-Package (`rfigshare`)
+  - Figshare account (http://figshare.com)
+
 ---
 
-## Uploaded to FigShare
+## Publish (curr. figshare, knb)
 
-<img src="assets/img/uploaded_csv_and_metadata_two_figshare.png" style="width: 800px;"/>
+<img src="assets/img/uploaded_csv_and_metadata_one.png" style="width: 800px;"/>
 
 ---
 
-## Uploaded to FigShare
-
-* Metadata
-
-<img src="assets/img/uploaded_csv_and_metadata_two_xml_shown.png" style="width: 800px;"/>
-
-* Data
+## Publish (curr. figshare, knb)
 
 <img src="assets/img/uploaded_csv_and_metadata_two_figshare_csv_shown.png" style="width: 800px;"/>
 
+<img src="assets/img/uploaded_csv_and_metadata_two_xml_shown.png" style="width: 800px;"/>
 
+--- bg:#EEE
 
+## Your turn (asselbe/write out)
 
+* Assemble 
+  - The dataset + core metadata (you created)
+  - the contact (you created)
 
+* Add a title and usage rights
 
+`title = "Count of life fish in traps of the sacramento and american river"`
 
+`license = "CC0, http://creativecommons.org/publicdomain/zero/1.0"`
 
+* Hint:
+  `final = eml(dat = ..., title =, contact = ...)`
+  
+* Write out the metadata and data
+  - Hint: eml_write(final, file = "xy.xml")
 
-
-
-
-
-## Idea collection practice
-
-Read data and metadata:
-  + Import a dataset
-  + Extract contact person
-  + Extract a column description
-
-Write data and metadata:
-  + Download an example dataset
-  + Add the core metadata (units: dictionary, dates, descriptions, classes)
-  + Show the most common metadata fields 
-  + Let them create and add (creator, contact, title, intellectual rights)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<a href="assets/files/task_write_out_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
 
 ---
 
@@ -595,11 +698,16 @@ Write data and metadata:
 * Read metadata from any EML formated source (File, URL, KNB-ID)
 
 ```{r reading_befchina_334}
-metadata <- eml_read("http://china.befdata.biow.uni-leipzig.de/datasets/334.eml")
+metadata <- eml_read("mymetadata.xml")
 ```
 
+```
+example_eml_from_url.xml
+```
+
+<p>   </p>
+
 * Then use `eml_get(metadata, "xy")`
-  - csv_filepaths
   - coverage
   - contact
   - unit.defs
@@ -612,11 +720,11 @@ metadata <- eml_read("http://china.befdata.biow.uni-leipzig.de/datasets/334.eml"
 ## Read metadata
   
 ```{r extract_creator, eval=T}
-eml_get(metadata, "creator")
+eml_get(metadata, "contact")
 ```  
   
 ```{r extract_coverage, eval=T}
-eml_get(metadata, "coverage")
+eml_get(metadata, "unit.defs")
 ```
 
 ---
@@ -625,20 +733,15 @@ eml_get(metadata, "coverage")
 
 * Access the data based on metadata information
   
-```{r read_the_data, include=F, eval=T, cache=T}
-# necessary as the paths in the file coming from BEF-data china are incorrect (needs fix)
-example_dataset = read.csv("http://china.befdata.biow.uni-leipzig.de/datasets/334/download.csv?separate_category_columns=true")
-```
-
-
-```
-example_dataset = eml_get(metadata, "data.set")
+```{r import_the_dataset, eval=T}
+example_dataset = eml_get(metadata, "data.frame")
+as(example_dataset, "data.frame")
 ```
 
 * Just display a subset of it here
 
-```{r display_part_of_the_data}
-example_dataset[1:4, 1:3]
+```{r display_part_of_the_data, eval=TRUE}
+example_dataset
 ```
 
 ---
@@ -646,11 +749,10 @@ example_dataset[1:4, 1:3]
 ## Wrap-up
 
 * The `EML` package
-  - Access to metadata 
-  - Access to data
-  - From any EML formatted source!
-  - Describe your own data with metadata
-  - Allows publication of citable data products
+  - Access to metadata/data
+  - Read information/data from any EML source
+  - Describe your own data
+  - Publication of citable data products
 
 * This was very brief intro:
   - Just visit GitHub for more!
@@ -673,6 +775,3 @@ example_dataset[1:4, 1:3]
   https://github.com/ropensci/EML
 
 <img src="assets/img/affiliations_gfoe_2014.png" style="width: 400px;", class="flushfooter flushcenter"/>
-
-
-

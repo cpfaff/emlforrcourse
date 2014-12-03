@@ -27,3 +27,14 @@ described_dataset = data.set(undescribed_data,
                              col.defs = col_defs,
                              unit.defs = unit_defs)
 
+
+# add a contact person
+claas_contact = eml_person("Claas-Thido Pfaff <test@fake.com>")
+
+address_of_claas_contact = new("address",
+                   deliveryPoint = "Universität Leipzig, Johannisallee 21",
+                   city = "Leipzig",
+                   postalCode = "04103",
+                   country = "GER")
+
+claas_contact@address = address_of_claas_contact

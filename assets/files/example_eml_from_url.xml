@@ -1,0 +1,139 @@
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml_1.1" packageId="7f3cb4f3-e9eb-4ca9-899a-2230afd77975" system="uuid" scope="system">
+  <dataset id="c095d456-5cea-4e83-8e3a-b83dc9a7ae8c" scope="document">
+    <title>Count of life fish in traps</title>
+    <creator>
+      <individualName>
+        <givenName>Claas-Thido</givenName>
+        <surName>Pfaff</surName>
+      </individualName>
+      <address>
+        <deliveryPoint>Universität Leipzig, Johannisallee 21</deliveryPoint>
+        <city>Leipzig</city>
+        <postalCode>04103</postalCode>
+        <country>GER</country>
+      </address>
+      <electronicMailAddress>fake@test.com</electronicMailAddress>
+    </creator>
+    <pubDate>2014-11-21</pubDate>
+    <intellectualRights>CC0, Creative commons zero</intellectualRights>
+    <contact>
+      <individualName>
+        <givenName>Claas-Thido</givenName>
+        <surName>Pfaff</surName>
+      </individualName>
+      <address>
+        <deliveryPoint>Universität Leipzig, Johannisallee 21</deliveryPoint>
+        <city>Leipzig</city>
+        <postalCode>04103</postalCode>
+        <country>GER</country>
+      </address>
+      <electronicMailAddress>fake@test.com</electronicMailAddress>
+    </contact>
+    <dataTable id="c59a485a-c171-4867-979d-8441970f0515" system="uuid" scope="system">
+      <entityName>data table</entityName>
+      <physical>
+        <objectName>data_table_8b81c7.csv</objectName>
+        <size>5784</size>
+        <characterEncoding>en_US.UTF-8</characterEncoding>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <numFooterLines>0</numFooterLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+      </physical>
+      <attributeList id="9db65f96-ea83-4149-afc5-95636bc62d92">
+        <attribute>
+          <attributeName>river</attributeName>
+          <attributeDefinition>River site used for collection</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>SAC</code>
+                    <definition>The Sacramento River</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>AM</code>
+                    <definition>The American River</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>spp</attributeName>
+          <attributeDefinition>Species common name</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>king</code>
+                    <definition>King Salmon</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>ccho</code>
+                    <definition>Coho Salmon</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>stg</attributeName>
+          <attributeDefinition>Life Stage</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>parr</code>
+                    <definition>third life stage</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>smolt</code>
+                    <definition>fourth life stage</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>ct</attributeName>
+          <attributeDefinition>Count of live fish in traps</attributeDefinition>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>number</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>dates</attributeName>
+          <attributeDefinition>Date of collection</attributeDefinition>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY-MM-DD</formatString>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <caseSensitive>yes</caseSensitive>
+      <numberOfRecords>3</numberOfRecords>
+    </dataTable>
+  </dataset>
+</eml:eml>
