@@ -1196,12 +1196,14 @@ myname@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-36" style="background:;">
+<slide class="" id="slide-36" style="background:#EEE;">
   <hgroup>
     <h2>Your turn (Read/Import)</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
+    <p></br></p>
+
+<ul>
 <li><p>Import the metadata from here:</p>
 
 <ul>
@@ -1222,21 +1224,52 @@ myname@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-37" style="background:;">
+<slide class="" id="slide-37" style="background:#EEE;">
+  <hgroup>
+    <h2>Your turn (Read/Import)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">eml_from_url = eml_read(&quot;http://bit.ly/1yhi1b3&quot;)
+</code></pre>
+
+<pre><code class="r">eml_from_url@dataset@title
+</code></pre>
+
+<pre><code>## [1] &quot;Count of life fish in traps&quot;
+</code></pre>
+
+<pre><code class="r">eml_get(eml_from_url, &quot;contact&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;Claas-Thido Pfaff &lt;fake@test.com&gt;&quot;
+</code></pre>
+
+<pre><code>eml_get(eml_from_url, &quot;data.set&quot;)
+eml_get(eml_from_url, &quot;data.frame&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-38" style="background:;">
   <hgroup>
     <h2>Wrap-up</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
+    <p></br> </p>
+
+<ul>
 <li><p>The <code>EML</code> package</p>
 
 <ul>
-<li>Access to metadata/data</li>
-<li>Read information/data from any EML source</li>
+<li>Read/Write metadata</li>
+<li>From any EML source</li>
 <li>Describe your own data</li>
+<li>Store your metadata and reuse it!</li>
 <li>Publication of citable data products</li>
 </ul></li>
-<li><p>This was very brief intro:</p>
+<li><p>This was very brief:</p>
 
 <ul>
 <li>Just visit GitHub for more!</li>
@@ -1248,7 +1281,7 @@ myname@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-38" style="background:;">
+<slide class="" id="slide-39" style="background:;">
   <article data-timings="">
     <div class = "flushcenter">
   <h1>Thanks for your attention!</h1>
@@ -1496,14 +1529,20 @@ myname@address = myaddress
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=37 title='Wrap-up'>
+        data-slide=37 title='Your turn (Read/Import)'>
          37
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=38 title=''>
+        data-slide=38 title='Wrap-up'>
          38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title=''>
+         39
       </a>
     </li>
   </ul>

@@ -871,9 +871,11 @@ eml_get(metadata_locally, "data.frame")
   - `data.frame` not
   - `data.set` here
 
----
+--- bg:#EEE
 
 ## Your turn (Read/Import)
+
+</br>
 
 * Import the metadata from here:
   - http://bit.ly/1yhi1b3
@@ -885,17 +887,52 @@ eml_get(metadata_locally, "data.frame")
   - extract the data.set 
   - Extract the data.frame
 
+--- bg:#EEE
+
+## Your turn (Read/Import)
+
+
+```r
+eml_from_url = eml_read("http://bit.ly/1yhi1b3")
+```
+
+
+```r
+eml_from_url@dataset@title
+```
+
+```
+## [1] "Count of life fish in traps"
+```
+
+
+```r
+eml_get(eml_from_url, "contact")
+```
+
+```
+## [1] "Claas-Thido Pfaff <fake@test.com>"
+```
+
+```
+eml_get(eml_from_url, "data.set")
+eml_get(eml_from_url, "data.frame")
+```
+
 ---
 
 ## Wrap-up
 
+</br> 
+
 * The `EML` package
-  - Access to metadata/data
-  - Read information/data from any EML source
+  - Read/Write metadata
+  - From any EML source
   - Describe your own data
+  - Store your metadata and reuse it!
   - Publication of citable data products
 
-* This was very brief intro:
+* This was very brief:
   - Just visit GitHub for more!
   - https://github.com/ropensci/EML
 
