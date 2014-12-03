@@ -247,7 +247,7 @@ library("EML")
 * Count of life fish in traps
   - ct: numeric  
 * The date of data collection: 
-  - dates: Format is Day, Month, Year
+  - dates: Format is Year, Month, Day
 
 <p>  </p>
 
