@@ -239,11 +239,9 @@ library("EML")
 
 ---
 
-## Create metadata
+## Create metadata (recapitulate)
 
-<p>  </p>
-<p>  </p>
-
+* We want to add metadata to the csv from Karl!
 * River site used for collection
   - river: sac = The sacramento river, am = The american river  
 * Scientific species names  
@@ -263,8 +261,9 @@ library("EML")
 
 ## Create metadata
 
-* EML package adds `data.set(data.frame, col.defs =, unit.defs =)`
+<p>  </p>
 
+* EML package adds `data.set(data.frame, col.defs =, unit.defs =)`
 * `col.defs` (plain text definition)
 
 
