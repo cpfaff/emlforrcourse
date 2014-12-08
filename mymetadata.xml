@@ -1,5 +1,5 @@
-<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml_1.1" packageId="8cc634c5-8a21-4c39-9ec8-bdee6b0ec258" system="uuid" scope="system">
-  <dataset id="10d20012-c91e-4c68-aa44-c396225068a3" scope="document">
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml_1.1" packageId="283bba34-7d1a-434f-9c3e-989fdb9e522a" system="uuid" scope="system">
+  <dataset id="3bc9cade-bdb4-415d-afe4-eb33fa6e116e" scope="document">
     <title>Count of life fish in traps</title>
     <creator>
       <individualName>
@@ -14,7 +14,7 @@
       </address>
       <electronicMailAddress>fake@test.com</electronicMailAddress>
     </creator>
-    <pubDate>Wed Dec  3 13:22:33 2014</pubDate>
+    <pubDate>2014-11-21</pubDate>
     <intellectualRights>CC0, Creative commons zero</intellectualRights>
     <contact>
       <individualName>
@@ -29,10 +29,10 @@
       </address>
       <electronicMailAddress>fake@test.com</electronicMailAddress>
     </contact>
-    <dataTable id="c0727d86-362e-4879-9828-7dcc4d370d8a" system="uuid" scope="system">
+    <dataTable id="ae0fd4de-32ab-46e9-9f0b-ee9cb6401203" system="uuid" scope="system">
       <entityName>data table</entityName>
       <physical>
-        <objectName>data_table_cbf219.csv</objectName>
+        <objectName>data_table_cbc0bb.csv</objectName>
         <size>6320</size>
         <characterEncoding>en_US.UTF-8</characterEncoding>
         <dataFormat>
@@ -47,7 +47,7 @@
           </textFormat>
         </dataFormat>
       </physical>
-      <attributeList id="aa3d49b8-1796-4122-bb87-ce309f2f76f0">
+      <attributeList id="248d9d3e-fbe7-4bba-84e7-532fb48015b1">
         <attribute>
           <attributeName>river</attributeName>
           <attributeDefinition>River site used for collection</attributeDefinition>

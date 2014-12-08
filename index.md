@@ -1,17 +1,20 @@
 ---
-title       : The EML R package
-subtitle    : Ecological Metadata Language Integration into R
-author      : Claas-Thido Pfaff, Carl Boettiger, Karthik Ram, Matt Jones
-job         : http://bit.ly/1CEuy07
-framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
-highlighter : highlight.js  # {highlight.js, prettify, highlight}
-hitheme     : tomorrow      # 
-widgets     : [mathjax, bootstrap]            # {mathjax, quiz, bootstrap}
-mode        : selfcontained
-knit        : slidify::knit2slides
+title: "The EML R package"
+author: "Claas-Thido Pfaff, Carl Boettiger, Karthik Ram, Matt Jones"
 github:
   author: cpfaff
   repo: emlforrcourse
+output: pdf_document
+hitheme: tomorrow
+job: http://bit.ly/1CEuy07
+knit: slidify::knit2slides
+mode: selfcontained
+highlighter: highlight.js
+subtitle: Ecological Metadata Language Integration into R
+framework: io2012
+widgets:
+- mathjax
+- bootstrap
 ---
 
 
@@ -107,7 +110,7 @@ github:
 
 <p>   </p>
 
-* Ecological Metadata Language (EML, XML)
+* Ecological Metadata Language ([EML](assets/files/EML_example.xml), XML)
   * Allows to capture aspects of data:
     * Units and categories
     * Temporal and spatial coverage ...
@@ -305,6 +308,38 @@ described_dataset = data.set(undescribed_data,
   - `col_defs`
   - `unit_def`
 
+---
+
+## Assemble (inspect)
+
+
+```
+## Object of class "data.set"
+##   river  spp   stg  ct
+## 1   SAC king smolt 293
+## 2   SAC king  parr 410
+## 3    AM ccho smolt 210
+## Slot "col.defs":
+## [1] "River site used for collection" "Species common name"           
+## [3] "Life Stage"                     "count of live fish in traps"   
+## 
+## Slot "unit.defs":
+## [[1]]
+##                    SAC                     AM 
+## "The Sacramento River"   "The American River" 
+## 
+## [[2]]
+##          king          ccho 
+## "King Salmon" "Coho Salmon" 
+## 
+## [[3]]
+##                parr               smolt 
+##  "third life stage" "fourth life stage" 
+## 
+## [[4]]
+## [1] "number"
+```
+
 --- bg:#EEE
 
 ## Your turn (core metadata)
@@ -317,15 +352,15 @@ undescribed_data = read.csv("http://bit.ly/11Q4GOt")
 ```
 
 * Create the colum definitions (character vector)
-  - Save to variable (e.g descriptions)
+  - Save to variable (e.g `col_defs`)
 
 * Create unit definitions (list)
-  - Save to variable (e.g units)
-  - Use: unit = "number" (for the count)
-  - Use: format = "YYYY-MM-DD" (for the date)
+  - Save to variable (e.g `unit_defs`)
+  - Use: `unit = "number"` (for the count)
+  - Use: `format = "YYYY-MM-DD"` (for the date)
  
-* Assemble (`data.set(data, col.defs = descriptions, unit.defs = units)`)
-  - save to variable (e.g data_with_core_metadata)
+* Assemble (`data.set(undescribed_data, col.defs = col_defs, unit.defs = unit_defs)`)
+  - save result to variable (e.g `data_with_core_metadata`)
 
 <a href="assets/files/task_add_core_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
 
@@ -359,7 +394,7 @@ undescribed_data = read.csv("http://bit.ly/11Q4GOt")
 * create an instance from an object
 
 ```
-the_new_instance = new("contact")
+new_contact_instance = new("contact")
 ```
 
 * show all variables (slotnames)
@@ -395,7 +430,7 @@ slotNames("contact")
 * Subsetting (not $ but @)
 
 ```
-the_new_instance@slotname
+the_instance@slotname
 ```
 
 * coercions 
@@ -410,61 +445,80 @@ as("22", "numeric")
 
 
 ```r
-claas = eml_person("Claas-Thido Pfaff <fake@test.com>")
-```
-
-```
-new("contact", 
-  individualName = new("individualName", 
-                        givenName = "Claas-Thido Pfaff", 
-                        surName = "Pfaff"), 
-  electronicMailAddress = "fake@test.com")
+claas_creator = new("creator", 
+             individualName = new("individualName", 
+                                   givenName = "Claas-Thido", 
+                                   surName = "Pfaff"), 
+             electronicMailAddress = "fake@test.com")
 ```
 
 
 ```r
-slotNames(claas)
+getSlots("creator")
 ```
 
 ```
-## [1] "individualName"        "organizationName"      "positionName"         
-## [4] "address"               "phone"                 "electronicMailAddress"
-## [7] "onlineUrl"             "userID"                "references"
+##        individualName      organizationName          positionName 
+##      "individualName"           "character"           "character" 
+##               address                 phone electronicMailAddress 
+##             "address"           "character"           "character" 
+##             onlineUrl                userID            references 
+##           "character"           "character"    "ListOfreferences"
 ```
 
 ---
 
-## Add creator
+## Add creator (name, mail)
+
+* Convenient with coercion
 
 
 ```r
-claas@individualName
+claas_person = eml_person("Claas-Thido Pfaff <fake@test.com>")
+```
+
+
+```r
+claas_creator = as(claas_person, "creator")
+```
+
+* Subsetting
+
+
+```r
+claas_creator@individualName@surName 
 ```
 
 ```
-## An object of class "individualName"
-## Slot "salutation":
-## character(0)
-## 
-## Slot "givenName":
+## [1] "Pfaff"
+```
+
+
+```r
+claas_creator@individualName@givenName 
+```
+
+```
 ## [1] "Claas-Thido"
-## 
-## Slot "surName":
-## [1] "Pfaff"
-```
-
-
-```r
-claas@individualName@surName
-```
-
-```
-## [1] "Pfaff"
 ```
 
 ---
 
 ## Add creator (address)
+
+
+```r
+getSlots("creator")
+```
+
+```
+##        individualName      organizationName          positionName 
+##      "individualName"           "character"           "character" 
+##               address                 phone electronicMailAddress 
+##             "address"           "character"           "character" 
+##             onlineUrl                userID            references 
+##           "character"           "character"    "ListOfreferences"
+```
 
 
 ```r
@@ -478,6 +532,13 @@ getSlots("address")
 ##        "character"        "character" "ListOfreferences"
 ```
 
+---
+
+## Add creator (address)
+
+* Instantiate an address
+  - Fill the slots
+
 
 ```r
 address = new("address",
@@ -487,43 +548,41 @@ address = new("address",
               country       = "GER")
 ```
 
+* Assign the addres to the creator
+
 
 ```r
-claas@address = address
+claas_creator@address = address
 ```
+
+* And everything put together ...
+
+
 
 ---
 
 ## Add creator (inspect)
 
-* Which class it that person object of?
+* All of the crator information together
 
 
 ```r
-class(claas)
+claas_creator = new("creator", 
+             individualName = new("individualName", 
+                                   givenName = "Claas-Thido", 
+                                   surName = "Pfaff"), 
+             electronicMailAddress = "fake@test.com",
+             address = new("address",
+                           deliveryPoint = "Universität Leipzig, Johannisallee 21",
+                           city          = "Leipzig",
+                           postalCode    = "04103",
+                           country       = "GER")
+            )
 ```
 
-```
-## [1] "contact"
-## attr(,"package")
-## [1] "EML"
-```
-
-<p>   </p>
-
-* It is a contact not a creator!
-  - Coerce it
-
-
-```r
-claas_creator = as(claas, "creator")
-```
-
-
-
-<p>   </p>
-
-* Why is this important?
+* So why do we need all this
+  - classes/instances
+  - nesting
 
 ---
 
@@ -579,6 +638,7 @@ claas_creator = as(claas, "creator")
 
 * Add a contact
   - Use `you = eml_person("Your Name <yourmail@provider.com>")`
+  - coerce `as(you, "contact")`
 * Add an address 
   - `address = new("address", deliveryPoint = "....")`
   - also add: city, postalCode, country
@@ -602,12 +662,13 @@ claas_creator = as(claas, "creator")
 
 ```r
 myname = eml_person("J. Steidle <steidle@fake.com>")
+myname_contact = as(myname, "contact")
 myaddress = new("address",
               deliveryPoint = "University Hohenheim, Schloss Hohenheim 1",
               city          = "Stuttgart",
               postalCode    = "70599",
               country       = "GER")
-myname@address = myaddress
+myname_contact@address = myaddress
 ```
 
 <a href="assets/files/task_add_contact_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
@@ -668,7 +729,7 @@ new("contact", individualName = new("individualName",
 ```r
 data = eml(dat = described_dataset,
            title = "Count of life fish in traps",
-           contact = claas,
+           contact = claas_contact,
            creator = claas_creator,
            intellectualRights = "CC0, Creative commons zero"
            )
@@ -749,7 +810,9 @@ Your article has been created! Your id number is 1256252
   `final = eml(dat = ..., title =, contact = ...)`
   
 * Write out the metadata and data
-  - Hint: eml_write(final, file = "xy.xml")
+  - Hint: `eml_write(final, file = "yourfilename.xml")`
+
+* Find it in your current WD
 
 <a href="assets/files/task_write_out_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
 
@@ -782,7 +845,12 @@ metadata_online = eml_read("http://bit.ly/1viuNDZ")
 ---
 
 ## Read metadata
-  
+
+
+```r
+metadata_online = eml_read("http://bit.ly/1viuNDZ")
+```
+
 
 ```r
 eml_get(metadata_online, "contact")
@@ -880,12 +948,14 @@ eml_get(metadata_locally, "data.frame")
 * Import the metadata from here:
   - http://bit.ly/1yhi1b3
   - use `eml_read()`
-  - Read the title (hint: use subset with `@`)
   - Extract contact (hint: `eml_get()`)
 
 * Get the core data and metadata (hint: `eml_get()`)
   - extract the data.set 
   - Extract the data.frame
+
+* If you are in the mood
+  - Find out the title (hint: use subset `@`)
 
 --- bg:#EEE
 
@@ -894,15 +964,6 @@ eml_get(metadata_locally, "data.frame")
 
 ```r
 eml_from_url = eml_read("http://bit.ly/1yhi1b3")
-```
-
-
-```r
-eml_from_url@dataset@title
-```
-
-```
-## [1] "Count of life fish in traps"
 ```
 
 
@@ -917,6 +978,15 @@ eml_get(eml_from_url, "contact")
 ```
 eml_get(eml_from_url, "data.set")
 eml_get(eml_from_url, "data.frame")
+```
+
+
+```r
+eml_from_url@dataset@title
+```
+
+```
+## [1] "Count of life fish in traps"
 ```
 
 ---
@@ -943,13 +1013,11 @@ eml_get(eml_from_url, "data.frame")
   <h1>Any questions?</h1>
 </div>
   
-<br>
- * Find this slides: 
-<br>
-  http://cpfaff.github.io/emlforrcourse
-<br>
- * Find EML package: 
-<br>
-  https://github.com/ropensci/EML
+</br>
 
-<img src="assets/img/affiliations_gfoe_2014.png" style="width: 400px;", class="flushfooter flushcenter"/>
+* Find this slides: 
+  - http://cpfaff.github.io/emlforrcourse
+* Find EML package: 
+  - https://github.com/ropensci/EML
+
+<img src="assets/img/affiliations_gfoe_2014.png" style="width: 400px;", class="flushfooter"/>
