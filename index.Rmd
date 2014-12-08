@@ -248,6 +248,9 @@ library("EML")
 
 ## Create metadata
 
+<p>  </p>
+<p>  </p>
+
 * River site used for collection
   - river: sac = The sacramento river, am = The american river  
 * Scientific species names  
@@ -293,12 +296,11 @@ unit_defs = list(c(SAC = "The Sacramento River", AM = "The American River"),
 
 ## Assemble
 
-<p>   </p>
+* Undescribed raw dataset
 
-* Assemble
-  - core metadadta 
-  - data 
-  - with `data.set()`
+```{r}
+undescribed_data
+```
 
 ```{r put_together}
 described_dataset = data.set(undescribed_data,
@@ -306,9 +308,7 @@ described_dataset = data.set(undescribed_data,
                              unit.defs = unit_defs)
 ```
 
-<p>   </p>
-
-* We use the variables just prepared
+* Metadata from variables just prepared
   - `col_defs`
   - `unit_def`
 
@@ -316,7 +316,7 @@ described_dataset = data.set(undescribed_data,
 
 ## Assemble (inspect)
 
-```{r inspect_described_dataset, echo = F}
+```{r inspect_described_dataset, echo = T}
 described_dataset
 ```
 
@@ -410,6 +410,18 @@ as("22", "numeric")
 
 ---
 
+## Add creator (name)
+
+```{r get_slots_of_creator_name}
+getSlots("creator")
+```
+
+```{r inspect_name_name}
+getSlots("individualName")
+```
+
+---
+
 ## Add creator (name, mail)
 
 ```{r creator_with_instantiation}
@@ -475,13 +487,13 @@ address = new("address",
               country       = "GER")
 ```
 
-* Assign the addres to the creator
+* Assign the address to the creator
 
 ```{r assign_address}
 claas_creator@address = address
 ```
 
-* And everything put together ...
+* And/Or everything put together ...
 
 ```{r add_a_contact_as_well_for_later_use, include = F, eval = T}
 claas_contact = as(claas_creator, "contact")
@@ -489,7 +501,7 @@ claas_contact = as(claas_creator, "contact")
 
 ---
 
-## Add creator (inspect)
+## Add creator (single step)
 
 * All of the crator information together
 
@@ -507,9 +519,10 @@ claas_creator = new("creator",
             )
 ```
 
+<p>   </p>   
+
 * So why do we need all this
-  - classes/instances
-  - nesting
+  - objects/classes/instances/nesting (EML is XML)
 
 ---
 
@@ -656,11 +669,11 @@ data = eml(dat = described_dataset,
            title = "Count of life fish in traps",
            contact = claas_contact,
            creator = claas_creator,
-           intellectualRights = "CC0, Creative commons zero"
+           license = "CC0, Creative commons zero"
            )
 ```
 
-* Write out the EML to a file
+* Write out the EML to a files
 
 ```{r eval=T}
 eml_write(data, file="mymetadata.xml")
@@ -717,14 +730,13 @@ Your article has been created! Your id number is 1256252
 * Assemble 
   - The dataset + core metadata (you created)
   - the contact (you created)
-
-* Add a title and usage rights
+  - Add a title and license
 
 `title = "Count of life fish in traps of the sacramento and american river"`
 
 `license = "CC0, http://creativecommons.org/publicdomain/zero/1.0"`
 
-* Hint:
+  - Hint:
   `final = eml(dat = ..., title =, contact = ...)`
   
 * Write out the metadata and data

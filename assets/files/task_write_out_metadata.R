@@ -39,9 +39,17 @@ address_of_claas_contact = new("address",
 
 claas_contact@address = address_of_claas_contact
 
+
 # add a license and a title
 title = "Count of life fish in traps at the sampling sites of the Sacramento and the American River"
 license = "CC0, http://creativecommons.org/publicdomain/zero/1.0"
 
 
 # assemble and write out
+data = eml(dat = described_dataset,
+           title = "Count of life fish in traps",
+           contact = claas_contact,
+           license = "CC0, Creative commons zero"
+)
+
+eml_write(data, file="mymetadata.xml")

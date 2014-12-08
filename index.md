@@ -241,6 +241,9 @@ library("EML")
 
 ## Create metadata
 
+<p>  </p>
+<p>  </p>
+
 * River site used for collection
   - river: sac = The sacramento river, am = The american river  
 * Scientific species names  
@@ -288,12 +291,19 @@ unit_defs = list(c(SAC = "The Sacramento River", AM = "The American River"),
 
 ## Assemble
 
-<p>   </p>
+* Undescribed raw dataset
 
-* Assemble
-  - core metadadta 
-  - data 
-  - with `data.set()`
+
+```r
+undescribed_data
+```
+
+```
+##   river  spp   stg  ct      dates
+## 1   SAC king smolt 293 1991-10-10
+## 2   SAC king  parr 410 1992-11-10
+## 3    AM ccho smolt 210 1993-10-10
+```
 
 
 ```r
@@ -302,9 +312,7 @@ described_dataset = data.set(undescribed_data,
                              unit.defs = unit_defs)
 ```
 
-<p>   </p>
-
-* We use the variables just prepared
+* Metadata from variables just prepared
   - `col_defs`
   - `unit_def`
 
@@ -312,6 +320,10 @@ described_dataset = data.set(undescribed_data,
 
 ## Assemble (inspect)
 
+
+```r
+described_dataset
+```
 
 ```
 ## Object of class "data.set"
@@ -441,6 +453,34 @@ as("22", "numeric")
 
 ---
 
+## Add creator (name)
+
+
+```r
+getSlots("creator")
+```
+
+```
+##        individualName      organizationName          positionName 
+##      "individualName"           "character"           "character" 
+##               address                 phone electronicMailAddress 
+##             "address"           "character"           "character" 
+##             onlineUrl                userID            references 
+##           "character"           "character"    "ListOfreferences"
+```
+
+
+```r
+getSlots("individualName")
+```
+
+```
+##  salutation   givenName     surName 
+## "character" "character" "character"
+```
+
+---
+
 ## Add creator (name, mail)
 
 
@@ -548,20 +588,20 @@ address = new("address",
               country       = "GER")
 ```
 
-* Assign the addres to the creator
+* Assign the address to the creator
 
 
 ```r
 claas_creator@address = address
 ```
 
-* And everything put together ...
+* And/Or everything put together ...
 
 
 
 ---
 
-## Add creator (inspect)
+## Add creator (single step)
 
 * All of the crator information together
 
@@ -580,9 +620,10 @@ claas_creator = new("creator",
             )
 ```
 
+<p>   </p>   
+
 * So why do we need all this
-  - classes/instances
-  - nesting
+  - objects/classes/instances/nesting (EML is XML)
 
 ---
 
@@ -731,11 +772,15 @@ data = eml(dat = described_dataset,
            title = "Count of life fish in traps",
            contact = claas_contact,
            creator = claas_creator,
-           intellectualRights = "CC0, Creative commons zero"
+           license = "CC0, Creative commons zero"
            )
 ```
 
-* Write out the EML to a file
+```
+## Error: invalid name for slot of class "dataset": license
+```
+
+* Write out the EML to a files
 
 
 ```r
@@ -799,14 +844,13 @@ Your article has been created! Your id number is 1256252
 * Assemble 
   - The dataset + core metadata (you created)
   - the contact (you created)
-
-* Add a title and usage rights
+  - Add a title and license
 
 `title = "Count of life fish in traps of the sacramento and american river"`
 
 `license = "CC0, http://creativecommons.org/publicdomain/zero/1.0"`
 
-* Hint:
+  - Hint:
   `final = eml(dat = ..., title =, contact = ...)`
   
 * Write out the metadata and data
