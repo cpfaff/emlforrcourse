@@ -723,7 +723,7 @@ Your article has been created! Your id number is 1256252
 
 `title = "Count of life fish in traps of the sacramento and american river"`
 
-`license = "CC0, http://creativecommons.org/publicdomain/zero/1.0"`
+`intellectualRights = "CC0, http://creativecommons.org/publicdomain/zero/1.0"`
 
   - Hint:
   `final = eml(dat = ..., title =, contact = ...)`
