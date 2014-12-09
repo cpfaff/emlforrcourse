@@ -1,9 +1,10 @@
-<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml_1.1" packageId="f34414d1-df5b-4b3b-86ba-35a2a72a1eb2" system="uuid" scope="system">
-  <dataset id="ac445f9f-b232-4200-8ec8-bbb453612264" scope="document">
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml_1.1" packageId="62bf7580-f4de-4f97-9647-621baaefded0" system="uuid" scope="system">
+  <dataset id="2e12f984-980a-4ca7-bca4-7681f6e9654c" scope="document">
     <title>Count of life fish in traps</title>
     <creator>
       <individualName>
-        <givenName>Claas-Thido Pfaff &lt;fake@test.com&gt;</givenName>
+        <givenName>Claas-Thido</givenName>
+        <surName>Pfaff</surName>
       </individualName>
       <address>
         <deliveryPoint>Universität Leipzig, Johannisallee 21</deliveryPoint>
@@ -11,12 +12,14 @@
         <postalCode>04103</postalCode>
         <country>GER</country>
       </address>
+      <electronicMailAddress>fake@test.com</electronicMailAddress>
     </creator>
     <pubDate>2014-11-21</pubDate>
     <intellectualRights>CC0, Creative commons zero</intellectualRights>
     <contact>
       <individualName>
-        <givenName>Claas-Thido Pfaff &lt;fake@test.com&gt;</givenName>
+        <givenName>Claas-Thido</givenName>
+        <surName>Pfaff</surName>
       </individualName>
       <address>
         <deliveryPoint>Universität Leipzig, Johannisallee 21</deliveryPoint>
@@ -24,12 +27,13 @@
         <postalCode>04103</postalCode>
         <country>GER</country>
       </address>
+      <electronicMailAddress>fake@test.com</electronicMailAddress>
     </contact>
-    <dataTable id="78b31dd2-12ff-44f7-bbca-4673394b3592" system="uuid" scope="system">
+    <dataTable id="6942c762-3594-479c-b20a-5ddd440b1371" system="uuid" scope="system">
       <entityName>data table</entityName>
       <physical>
-        <objectName>data_table_37eb10.csv</objectName>
-        <size>5000</size>
+        <objectName>data_table_57c55e.csv</objectName>
+        <size>6320</size>
         <characterEncoding>en_US.UTF-8</characterEncoding>
         <dataFormat>
           <textFormat>
@@ -43,7 +47,7 @@
           </textFormat>
         </dataFormat>
       </physical>
-      <attributeList id="c3d79b30-24c5-4a0d-a2c5-7ffb4ba41b17">
+      <attributeList id="374b5912-84c5-406b-81e6-fa83284617ce">
         <attribute>
           <attributeName>river</attributeName>
           <attributeDefinition>River site used for collection</attributeDefinition>
@@ -106,7 +110,7 @@
         </attribute>
         <attribute>
           <attributeName>ct</attributeName>
-          <attributeDefinition>count of live fish in traps</attributeDefinition>
+          <attributeDefinition>Count of live fish in traps</attributeDefinition>
           <measurementScale>
             <ratio>
               <unit>
@@ -116,6 +120,19 @@
                 <numberType>real</numberType>
               </numericDomain>
             </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>dates</attributeName>
+          <attributeDefinition>Date of collection</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>YYYY-MM-DD</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
           </measurementScale>
         </attribute>
       </attributeList>

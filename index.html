@@ -559,7 +559,7 @@ library(&quot;EML&quot;)
 <li><p>Assemble (<code>data.set(undescribed_data, col.defs = col_defs, unit.defs = unit_defs)</code>)</p>
 
 <ul>
-<li>save result to variable (e.g <code>data_with_core_metadata</code>)</li>
+<li>save result to variable (e.g <code>described_data</code>)</li>
 </ul></li>
 </ul>
 
@@ -636,7 +636,7 @@ library(&quot;EML&quot;)
   </hgroup>
   <article data-timings="">
     <ul>
-<li><p>Slots can contain var. data types:</p>
+<li>Slots can contain var. data types:
 
 <ul>
 <li>character</li>
@@ -644,7 +644,12 @@ library(&quot;EML&quot;)
 <li>lists</li>
 <li>other objects</li>
 </ul></li>
-<li><p>Subsetting (not $ but @)</p></li>
+</ul>
+
+<p>    </p>
+
+<ul>
+<li>Subsetting (not $ but @)</li>
 </ul>
 
 <pre><code>the_instance@slotname
@@ -700,27 +705,7 @@ library(&quot;EML&quot;)
              electronicMailAddress = &quot;fake@test.com&quot;)
 </code></pre>
 
-<pre><code class="r">getSlots(&quot;creator&quot;)
-</code></pre>
-
-<pre><code>##        individualName      organizationName          positionName 
-##      &quot;individualName&quot;           &quot;character&quot;           &quot;character&quot; 
-##               address                 phone electronicMailAddress 
-##             &quot;address&quot;           &quot;character&quot;           &quot;character&quot; 
-##             onlineUrl                userID            references 
-##           &quot;character&quot;           &quot;character&quot;    &quot;ListOfreferences&quot;
-</code></pre>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-20" style="background:;">
-  <hgroup>
-    <h2>Add creator (name, mail)</h2>
-  </hgroup>
-  <article data-timings="">
-    <ul>
+<ul>
 <li>Convenient with coercion</li>
 </ul>
 
@@ -740,17 +725,11 @@ library(&quot;EML&quot;)
 <pre><code>## [1] &quot;Pfaff&quot;
 </code></pre>
 
-<pre><code class="r">claas_creator@individualName@givenName 
-</code></pre>
-
-<pre><code>## [1] &quot;Claas-Thido&quot;
-</code></pre>
-
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-21" style="background:;">
+<slide class="" id="slide-20" style="background:;">
   <hgroup>
     <h2>Add creator (address)</h2>
   </hgroup>
@@ -779,7 +758,7 @@ library(&quot;EML&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-22" style="background:;">
+<slide class="" id="slide-21" style="background:;">
   <hgroup>
     <h2>Add creator (address)</h2>
   </hgroup>
@@ -814,7 +793,7 @@ library(&quot;EML&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-23" style="background:;">
+<slide class="" id="slide-22" style="background:;">
   <hgroup>
     <h2>Add creator (single step)</h2>
   </hgroup>
@@ -850,7 +829,7 @@ library(&quot;EML&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-24" style="background:;">
+<slide class="" id="slide-23" style="background:;">
   <hgroup>
     <h2>It is important because!</h2>
   </hgroup>
@@ -882,7 +861,7 @@ library(&quot;EML&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-25" style="background:#EEE;">
+<slide class="" id="slide-24" style="background:#EEE;">
   <hgroup>
     <h2>Your turn (add contact)</h2>
   </hgroup>
@@ -909,7 +888,7 @@ library(&quot;EML&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-26" style="background:#EEE;">
+<slide class="" id="slide-25" style="background:#EEE;">
   <hgroup>
     <h2>Your turn (add contact)</h2>
   </hgroup>
@@ -943,7 +922,7 @@ library(&quot;EML&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-27" style="background:#EEE;">
+<slide class="" id="slide-26" style="background:#EEE;">
   <hgroup>
     <h2>Your turn (add contact 1)</h2>
   </hgroup>
@@ -976,7 +955,7 @@ myname_contact@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-28" style="background:#EEE;">
+<slide class="" id="slide-27" style="background:#EEE;">
   <hgroup>
     <h2>Your turn (add contact 2)</h2>
   </hgroup>
@@ -1008,7 +987,7 @@ myname_contact@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-29" style="background:;">
+<slide class="" id="slide-28" style="background:;">
   <hgroup>
     <h2>Typical metadata (add more &quot;x&quot;)</h2>
   </hgroup>
@@ -1035,7 +1014,7 @@ myname_contact@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-30" style="background:;">
+<slide class="" id="slide-29" style="background:;">
   <hgroup>
     <h2>Put all together</h2>
   </hgroup>
@@ -1048,11 +1027,8 @@ myname_contact@address = myaddress
            title = &quot;Count of life fish in traps&quot;,
            contact = claas_contact,
            creator = claas_creator,
-           license = &quot;CC0, Creative commons zero&quot;
+           intellectualRights = &quot;CC0, Creative commons zero&quot;
            )
-</code></pre>
-
-<pre><code>## Error: invalid name for slot of class &quot;dataset&quot;: license
 </code></pre>
 
 <ul>
@@ -1078,7 +1054,7 @@ myname_contact@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-31" style="background:;">
+<slide class="" id="slide-30" style="background:;">
   <hgroup>
     <h2>Publish (curr. figshare, knb)</h2>
   </hgroup>
@@ -1111,7 +1087,7 @@ myname_contact@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-32" style="background:;">
+<slide class="" id="slide-31" style="background:;">
   <hgroup>
     <h2>Publish (curr. figshare, knb)</h2>
   </hgroup>
@@ -1122,7 +1098,7 @@ myname_contact@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-33" style="background:;">
+<slide class="" id="slide-32" style="background:;">
   <hgroup>
     <h2>Publish (curr. figshare, knb)</h2>
   </hgroup>
@@ -1135,7 +1111,7 @@ myname_contact@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-34" style="background:#EEE;">
+<slide class="" id="slide-33" style="background:#EEE;">
   <hgroup>
     <h2>Your turn (assemble/write out)</h2>
   </hgroup>
@@ -1174,7 +1150,7 @@ myname_contact@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-35" style="background:;">
+<slide class="" id="slide-34" style="background:;">
   <hgroup>
     <h2>Read metadata</h2>
   </hgroup>
@@ -1208,7 +1184,7 @@ myname_contact@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-36" style="background:;">
+<slide class="" id="slide-35" style="background:;">
   <hgroup>
     <h2>Read metadata</h2>
   </hgroup>
@@ -1237,7 +1213,7 @@ myname_contact@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-37" style="background:;">
+<slide class="" id="slide-36" style="background:;">
   <hgroup>
     <h2>Import data</h2>
   </hgroup>
@@ -1282,7 +1258,7 @@ myname_contact@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-38" style="background:;">
+<slide class="" id="slide-37" style="background:;">
   <hgroup>
     <h2>Import data</h2>
   </hgroup>
@@ -1313,7 +1289,7 @@ myname_contact@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-39" style="background:#EEE;">
+<slide class="" id="slide-38" style="background:#EEE;">
   <hgroup>
     <h2>Your turn (Read/Import)</h2>
   </hgroup>
@@ -1345,7 +1321,7 @@ myname_contact@address = myaddress
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-40" style="background:#EEE;">
+<slide class="" id="slide-39" style="background:#EEE;">
   <hgroup>
     <h2>Your turn (Read/Import)</h2>
   </hgroup>
@@ -1373,7 +1349,7 @@ eml_get(eml_from_url, &quot;data.frame&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-41" style="background:;">
+<slide class="" id="slide-40" style="background:;">
   <hgroup>
     <h2>Wrap-up</h2>
   </hgroup>
@@ -1402,7 +1378,7 @@ eml_get(eml_from_url, &quot;data.frame&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-42" style="background:;">
+<slide class="" id="slide-41" style="background:;">
   <article data-timings="">
     <div class = "flushcenter">
   <h1>Thanks for your attention!</h1>
@@ -1551,7 +1527,7 @@ eml_get(eml_from_url, &quot;data.frame&quot;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='Add creator (name, mail)'>
+        data-slide=20 title='Add creator (address)'>
          20
       </a>
     </li>
@@ -1563,19 +1539,19 @@ eml_get(eml_from_url, &quot;data.frame&quot;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='Add creator (address)'>
+        data-slide=22 title='Add creator (single step)'>
          22
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Add creator (single step)'>
+        data-slide=23 title='It is important because!'>
          23
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='It is important because!'>
+        data-slide=24 title='Your turn (add contact)'>
          24
       </a>
     </li>
@@ -1587,31 +1563,31 @@ eml_get(eml_from_url, &quot;data.frame&quot;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=26 title='Your turn (add contact)'>
+        data-slide=26 title='Your turn (add contact 1)'>
          26
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title='Your turn (add contact 1)'>
+        data-slide=27 title='Your turn (add contact 2)'>
          27
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title='Your turn (add contact 2)'>
+        data-slide=28 title='Typical metadata (add more &quot;x&quot;)'>
          28
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=29 title='Typical metadata (add more &quot;x&quot;)'>
+        data-slide=29 title='Put all together'>
          29
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=30 title='Put all together'>
+        data-slide=30 title='Publish (curr. figshare, knb)'>
          30
       </a>
     </li>
@@ -1629,13 +1605,13 @@ eml_get(eml_from_url, &quot;data.frame&quot;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=33 title='Publish (curr. figshare, knb)'>
+        data-slide=33 title='Your turn (assemble/write out)'>
          33
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=34 title='Your turn (assemble/write out)'>
+        data-slide=34 title='Read metadata'>
          34
       </a>
     </li>
@@ -1647,7 +1623,7 @@ eml_get(eml_from_url, &quot;data.frame&quot;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title='Read metadata'>
+        data-slide=36 title='Import data'>
          36
       </a>
     </li>
@@ -1659,7 +1635,7 @@ eml_get(eml_from_url, &quot;data.frame&quot;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=38 title='Import data'>
+        data-slide=38 title='Your turn (Read/Import)'>
          38
       </a>
     </li>
@@ -1671,20 +1647,14 @@ eml_get(eml_from_url, &quot;data.frame&quot;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=40 title='Your turn (Read/Import)'>
+        data-slide=40 title='Wrap-up'>
          40
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=41 title='Wrap-up'>
+        data-slide=41 title=''>
          41
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=42 title=''>
-         42
       </a>
     </li>
   </ul>

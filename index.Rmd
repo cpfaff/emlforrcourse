@@ -338,7 +338,7 @@ undescribed_data = read.csv("http://bit.ly/11Q4GOt")
   - Use: `format = "YYYY-MM-DD"` (for the date)
  
 * Assemble (`data.set(undescribed_data, col.defs = col_defs, unit.defs = unit_defs)`)
-  - save result to variable (e.g `data_with_core_metadata`)
+  - save result to variable (e.g `described_data`)
 
 <a href="assets/files/task_add_core_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
 
@@ -395,6 +395,8 @@ slotNames("contact")
   - lists
   - other objects
 
+<p>    </p>
+
 * Subsetting (not $ but @)
 
 ```
@@ -431,14 +433,6 @@ claas_creator = new("creator",
              electronicMailAddress = "fake@test.com")
 ```
 
-```{r check_slotnames}
-getSlots("creator")
-```
-
----
-
-## Add creator (name, mail)
-
 * Convenient with coercion
 
 ```{r create_person}
@@ -453,10 +447,6 @@ claas_creator = as(claas_person, "creator")
 
 ```{r check_individual_name_surName}
 claas_creator@individualName@surName 
-```
-
-```{r check_individual_name}
-claas_creator@individualName@givenName 
 ```
 
 ---
@@ -668,7 +658,7 @@ data = eml(dat = described_dataset,
            title = "Count of life fish in traps",
            contact = claas_contact,
            creator = claas_creator,
-           license = "CC0, Creative commons zero"
+           intellectualRights = "CC0, Creative commons zero"
            )
 ```
 

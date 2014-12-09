@@ -371,7 +371,7 @@ undescribed_data = read.csv("http://bit.ly/11Q4GOt")
   - Use: `format = "YYYY-MM-DD"` (for the date)
  
 * Assemble (`data.set(undescribed_data, col.defs = col_defs, unit.defs = unit_defs)`)
-  - save result to variable (e.g `data_with_core_metadata`)
+  - save result to variable (e.g `described_data`)
 
 <a href="assets/files/task_add_core_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
 
@@ -438,6 +438,8 @@ slotNames("contact")
   - lists
   - other objects
 
+<p>    </p>
+
 * Subsetting (not $ but @)
 
 ```
@@ -491,24 +493,6 @@ claas_creator = new("creator",
              electronicMailAddress = "fake@test.com")
 ```
 
-
-```r
-getSlots("creator")
-```
-
-```
-##        individualName      organizationName          positionName 
-##      "individualName"           "character"           "character" 
-##               address                 phone electronicMailAddress 
-##             "address"           "character"           "character" 
-##             onlineUrl                userID            references 
-##           "character"           "character"    "ListOfreferences"
-```
-
----
-
-## Add creator (name, mail)
-
 * Convenient with coercion
 
 
@@ -530,15 +514,6 @@ claas_creator@individualName@surName
 
 ```
 ## [1] "Pfaff"
-```
-
-
-```r
-claas_creator@individualName@givenName 
-```
-
-```
-## [1] "Claas-Thido"
 ```
 
 ---
@@ -771,12 +746,8 @@ data = eml(dat = described_dataset,
            title = "Count of life fish in traps",
            contact = claas_contact,
            creator = claas_creator,
-           license = "CC0, Creative commons zero"
+           intellectualRights = "CC0, Creative commons zero"
            )
-```
-
-```
-## Error: invalid name for slot of class "dataset": license
 ```
 
 * Write out the EML to a files
