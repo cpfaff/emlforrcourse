@@ -1,9 +1,6 @@
 ---
 title: "The EML R package"
 author: "Claas-Thido Pfaff, Carl Boettiger, Karthik Ram, Matt Jones"
-github:
-  author: cpfaff
-  repo: emlforrcourse
 output: pdf_document
 hitheme: tomorrow
 job: http://bit.ly/1CEuy07
@@ -115,7 +112,7 @@ widgets:
     * Units and categories
     * Temporal and spatial coverage ...
     * Contact information ... and much more
-  * In a structured machine readable way
+  * In a structured, machine readable way
  
 <div class = "flushfooter">
   <a href="https://knb.ecoinformatics.org/#tools" class="btn"><i class="icon-home"></i> Morpho</a>
@@ -1029,9 +1026,14 @@ eml_from_url@dataset@title
   
 </br>
 
-* Find this slides: 
-  - http://cpfaff.github.io/emlforrcourse
-* Find EML package: 
-  - https://github.com/ropensci/EML
+* Online slides: 
+  http://cpfaff.github.io/emlforrcourse
+* Download slides:
+  https://github.com/cpfaff/emlforrcourse/archive/gh-pages.zip  
+* The EML package: 
+  https://github.com/ropensci/EML
+
+
+  
 
 <img src="assets/img/affiliations_gfoe_2014.png" style="width: 400px;", class="flushfooter"/>

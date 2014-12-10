@@ -1,5 +1,5 @@
-<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml_1.1" packageId="62bf7580-f4de-4f97-9647-621baaefded0" system="uuid" scope="system">
-  <dataset id="2e12f984-980a-4ca7-bca4-7681f6e9654c" scope="document">
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml_1.1" packageId="bafab4f5-0693-4285-a7cf-8ad7b8f90239" system="uuid" scope="system">
+  <dataset id="0cf9bf69-d295-4f82-9d12-45f2bcee6c84" scope="document">
     <title>Count of life fish in traps</title>
     <creator>
       <individualName>
@@ -29,10 +29,10 @@
       </address>
       <electronicMailAddress>fake@test.com</electronicMailAddress>
     </contact>
-    <dataTable id="6942c762-3594-479c-b20a-5ddd440b1371" system="uuid" scope="system">
+    <dataTable id="7e4e9e1d-7a73-4138-9512-07344f17ef89" system="uuid" scope="system">
       <entityName>data table</entityName>
       <physical>
-        <objectName>data_table_57c55e.csv</objectName>
+        <objectName>data_table_c7664c.csv</objectName>
         <size>6320</size>
         <characterEncoding>en_US.UTF-8</characterEncoding>
         <dataFormat>
@@ -47,7 +47,7 @@
           </textFormat>
         </dataFormat>
       </physical>
-      <attributeList id="374b5912-84c5-406b-81e6-fa83284617ce">
+      <attributeList id="770fc371-552f-4bfe-b643-f5c85d041c8b">
         <attribute>
           <attributeName>river</attributeName>
           <attributeDefinition>River site used for collection</attributeDefinition>
