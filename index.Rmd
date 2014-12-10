@@ -62,7 +62,7 @@ kable(undescribed_data)
 
 <p>   </p>
 
-* These you guess:
+* Some you might guess:
   - river: Abbr. of collection sites (full name)
   - spp: Abbr. of species names (full name)
   - stg: The life stage of fish
@@ -92,7 +92,7 @@ kable(undescribed_data)
 > spp: king = King Salmon, ccho = Coho Salmon  
 > stg: par = Third life stage, smolt = Fourth life stage  
 > ct: It is the count of life fish caught in traps  
-> dates: The date format is YMD
+> dates: The date format is YYYY-MM-DD
 >  
 > -- *All the best Karl*
 
@@ -141,7 +141,7 @@ kable(undescribed_data)
 
 * Motivation (R package for EML)
   * Many data undescribed; Biologists in R
-  * Introduces a wide spread standard to R
+  * Introduces a well established standard to R
   * Read + Write metadata
   * Publish (Data + Metadata)
 
@@ -220,7 +220,7 @@ library("EML")
 
 ---
 
-## Typical metadata (add core)
+## Typical metadata (desc, unit, cat)
 
 ```
 - eml
@@ -659,7 +659,7 @@ data = eml(dat = described_dataset,
            )
 ```
 
-* Write out the EML to a files
+* Write out the EML to a file
 
 ```{r eval=T}
 eml_write(data, file="mymetadata.xml")
@@ -669,8 +669,31 @@ eml_write(data, file="mymetadata.xml")
 
 <div class = "flushfooter">
   <a href="assets/files/example_eml_from_url.xml" class="btn"><i class="icon-zoom-in"></i> EML file</a>
-  <a href="assets/files/assets/files/example_csv_file.csv" class="btn"><i class="icon-zoom-in"></i> CSV file</a>
+  <a href="assets/files/assets/files/csv_file_from_email.csv" class="btn"><i class="icon-zoom-in"></i> CSV file</a>
 </div>
+
+--- bg:#EEE
+
+## Your turn (assemble/write out)
+
+* Assemble 
+  - The dataset + core metadata (you created)
+  - the contact (you created)
+  - Add a title and license
+
+`title = "Count of life fish in traps of the sacramento and american river"`
+
+`intellectualRights = "CC0, http://creativecommons.org/publicdomain/zero/1.0"`
+
+  - Hint:
+  `final = eml(dat = ..., title =, contact = ...)`
+  
+* Write out the metadata and data
+  - Hint: `eml_write(final, file = "yourfilename.xml")`
+
+* Find it in your current WD
+
+<a href="assets/files/task_write_out_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
 
 ---
 
@@ -708,29 +731,6 @@ Your article has been created! Your id number is 1256252
 <img src="assets/img/uploaded_csv_and_metadata_two_figshare_csv_shown.png" style="width: 800px;"/>
 
 <img src="assets/img/uploaded_csv_and_metadata_two_xml_shown.png" style="width: 800px;"/>
-
---- bg:#EEE
-
-## Your turn (assemble/write out)
-
-* Assemble 
-  - The dataset + core metadata (you created)
-  - the contact (you created)
-  - Add a title and license
-
-`title = "Count of life fish in traps of the sacramento and american river"`
-
-`intellectualRights = "CC0, http://creativecommons.org/publicdomain/zero/1.0"`
-
-  - Hint:
-  `final = eml(dat = ..., title =, contact = ...)`
-  
-* Write out the metadata and data
-  - Hint: `eml_write(final, file = "yourfilename.xml")`
-
-* Find it in your current WD
-
-<a href="assets/files/task_write_out_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a>
 
 ---
 

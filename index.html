@@ -120,7 +120,7 @@ is useful to you!<br>
 <p>   </p>
 
 <ul>
-<li><p>These you guess:</p>
+<li><p>Some you might guess:</p>
 
 <ul>
 <li>river: Abbr. of collection sites (full name)</li>
@@ -164,7 +164,7 @@ in that particular data collection! The information you need is:  </p>
 spp: king = King Salmon, ccho = Coho Salmon<br>
 stg: par = Third life stage, smolt = Fourth life stage<br>
 ct: It is the count of life fish caught in traps<br>
-dates: The date format is YMD</p>
+dates: The date format is YYYY-MM-DD</p>
 
 <p>-- <em>All the best Karl</em></p>
 </blockquote>
@@ -243,7 +243,7 @@ dates: The date format is YMD</p>
 
 <ul>
 <li>Many data undescribed; Biologists in R</li>
-<li>Introduces a wide spread standard to R</li>
+<li>Introduces a well established standard to R</li>
 <li>Read + Write metadata</li>
 <li>Publish (Data + Metadata)</li>
 </ul></li>
@@ -353,7 +353,7 @@ library(&quot;EML&quot;)
 
 <slide class="" id="slide-9" style="background:;">
   <hgroup>
-    <h2>Typical metadata (add core)</h2>
+    <h2>Typical metadata (desc, unit, cat)</h2>
   </hgroup>
   <article data-timings="">
     <pre><code>- eml
@@ -1029,7 +1029,7 @@ myname_contact@address = myaddress
 </code></pre>
 
 <ul>
-<li>Write out the EML to a files</li>
+<li>Write out the EML to a file</li>
 </ul>
 
 <pre><code class="r">eml_write(data, file=&quot;mymetadata.xml&quot;)
@@ -1044,71 +1044,14 @@ myname_contact@address = myaddress
 
 <div class = "flushfooter">
   <a href="assets/files/example_eml_from_url.xml" class="btn"><i class="icon-zoom-in"></i> EML file</a>
-  <a href="assets/files/assets/files/example_csv_file.csv" class="btn"><i class="icon-zoom-in"></i> CSV file</a>
+  <a href="assets/files/assets/files/csv_file_from_email.csv" class="btn"><i class="icon-zoom-in"></i> CSV file</a>
 </div>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-30" style="background:;">
-  <hgroup>
-    <h2>Publish (curr. figshare, knb)</h2>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li>Publish to figshare (requires <code>rfigshare</code> package)</li>
-</ul>
-
-<pre><code class="r">eml_publish(&quot;mymetadata.xml&quot;, 
-            description=&quot;Example EML file from EML&quot;,
-            categories = &quot;Ecology&quot;, 
-            tags = &quot;EML&quot;, 
-            destination=&quot;figshare&quot;)
-</code></pre>
-
-<pre><code class="r">Your article has been created! Your id number is 1256252
-[1] 1256252
-</code></pre>
-
-<ul>
-<li>Requires
-
-<ul>
-<li>R-Package (<code>rfigshare</code>)</li>
-<li>Figshare account (<a href="http://figshare.com">http://figshare.com</a>)</li>
-</ul></li>
-</ul>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-31" style="background:;">
-  <hgroup>
-    <h2>Publish (curr. figshare, knb)</h2>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="assets/img/uploaded_csv_and_metadata_one.png" style="width: 800px;"/></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-32" style="background:;">
-  <hgroup>
-    <h2>Publish (curr. figshare, knb)</h2>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="assets/img/uploaded_csv_and_metadata_two_figshare_csv_shown.png" style="width: 800px;"/></p>
-
-<p><img src="assets/img/uploaded_csv_and_metadata_two_xml_shown.png" style="width: 800px;"/></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-33" style="background:#EEE;">
+<slide class="" id="slide-30" style="background:#EEE;">
   <hgroup>
     <h2>Your turn (assemble/write out)</h2>
   </hgroup>
@@ -1142,6 +1085,63 @@ myname_contact@address = myaddress
 </ul>
 
 <p><a href="assets/files/task_write_out_metadata.R" class="btn flushfooter"><i class="icon-download"></i> Failed? Your rescue!</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-31" style="background:;">
+  <hgroup>
+    <h2>Publish (curr. figshare, knb)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Publish to figshare (requires <code>rfigshare</code> package)</li>
+</ul>
+
+<pre><code class="r">eml_publish(&quot;mymetadata.xml&quot;, 
+            description=&quot;Example EML file from EML&quot;,
+            categories = &quot;Ecology&quot;, 
+            tags = &quot;EML&quot;, 
+            destination=&quot;figshare&quot;)
+</code></pre>
+
+<pre><code class="r">Your article has been created! Your id number is 1256252
+[1] 1256252
+</code></pre>
+
+<ul>
+<li>Requires
+
+<ul>
+<li>R-Package (<code>rfigshare</code>)</li>
+<li>Figshare account (<a href="http://figshare.com">http://figshare.com</a>)</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-32" style="background:;">
+  <hgroup>
+    <h2>Publish (curr. figshare, knb)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/uploaded_csv_and_metadata_one.png" style="width: 800px;"/></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-33" style="background:;">
+  <hgroup>
+    <h2>Publish (curr. figshare, knb)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/uploaded_csv_and_metadata_two_figshare_csv_shown.png" style="width: 800px;"/></p>
+
+<p><img src="assets/img/uploaded_csv_and_metadata_two_xml_shown.png" style="width: 800px;"/></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -1454,7 +1454,7 @@ eml_get(eml_from_url, &quot;data.frame&quot;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='Typical metadata (add core)'>
+        data-slide=9 title='Typical metadata (desc, unit, cat)'>
          9
       </a>
     </li>
@@ -1580,7 +1580,7 @@ eml_get(eml_from_url, &quot;data.frame&quot;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=30 title='Publish (curr. figshare, knb)'>
+        data-slide=30 title='Your turn (assemble/write out)'>
          30
       </a>
     </li>
@@ -1598,7 +1598,7 @@ eml_get(eml_from_url, &quot;data.frame&quot;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=33 title='Your turn (assemble/write out)'>
+        data-slide=33 title='Publish (curr. figshare, knb)'>
          33
       </a>
     </li>
