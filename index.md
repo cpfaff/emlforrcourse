@@ -693,7 +693,8 @@ myname_contact@address = myaddress
   - More basic (no wrapper function)
   - Everything in one block
 
-```
+
+```r
 new("contact", individualName = new("individualName", 
                                                     givenName = "Claas-Thido Pfaff", 
                                                     surName = "Pfaff"), 

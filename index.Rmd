@@ -606,7 +606,7 @@ myname_contact@address = myaddress
   - More basic (no wrapper function)
   - Everything in one block
 
-```
+```{r contact_in_one_block, tidy=F, eval = F}
 new("contact", individualName = new("individualName", 
                                                     givenName = "Claas-Thido Pfaff", 
                                                     surName = "Pfaff"), 
