@@ -867,7 +867,4 @@ eml_from_url@dataset@title
 * The EML package: 
   https://github.com/ropensci/EML
 
-
-  
-
-<img src="assets/img/affiliations_gfoe_2014.png" style="width: 400px;", class="flushfooter"/>
+<img src="assets/img/full_funding.png" style="width: 400px;", class="flushfooter"/>
