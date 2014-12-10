@@ -1,6 +1,9 @@
 ---
 title: "The EML R package"
 author: "Claas-Thido Pfaff, Carl Boettiger, Karthik Ram, Matt Jones"
+github:
+  author: cpfaff
+  repo: emlforrcourse
 output: pdf_document
 hitheme: tomorrow
 job: http://bit.ly/1CEuy07
